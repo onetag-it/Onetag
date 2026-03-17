@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>OneTag — IT Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+[data-theme="dark"]{--bg:#0C0C0C;--bg2:#111111;--bg3:#181818;--fg:#F0EDE8;--fg2:rgba(240,237,232,.55);--fg3:rgba(240,237,232,.25);--border:rgba(240,237,232,.07);--border2:rgba(240,237,232,.13);--card:#141414;--inv-bg:#F0EDE8;--inv-fg:#0C0C0C;--mark:rgba(240,237,232,.035);}
+[data-theme="light"]{--bg:#F0EDE8;--bg2:#E8E5E0;--bg3:#FFFFFF;--fg:#0C0C0C;--fg2:rgba(12,12,12,.55);--fg3:rgba(12,12,12,.3);--border:rgba(12,12,12,.07);--border2:rgba(12,12,12,.14);--card:#FFFFFF;--inv-bg:#0C0C0C;--inv-fg:#F0EDE8;--mark:rgba(12,12,12,.04);}
+:root{--or:#FF6B2B;--or2:rgba(255,107,43,.12);--or3:rgba(255,107,43,.06);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--fg);overflow-x:hidden;transition:background .4s,color .4s;cursor:none;}
+::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--or);}
+a{text-decoration:none;color:inherit;}
+
+/* CURSOR */
+.cur-d,.cur-r{position:fixed;pointer-events:none;z-index:9999;border-radius:50%;transform:translate(-50%,-50%);}
+.cur-d{width:7px;height:7px;background:var(--or);}
+.cur-r{width:32px;height:32px;border:1.5px solid rgba(255,107,43,.5);transition:width .3s,height .3s;}
+body:has(a:hover) .cur-r,body:has(button:hover) .cur-r{width:50px;height:50px;border-color:var(--or);}
+
+/* THEME TOGGLE */
+.tt-btn{position:fixed;top:20px;right:68px;z-index:200;width:48px;height:26px;background:var(--border2);border:1px solid var(--border2);border-radius:100px;cursor:pointer;display:flex;align-items:center;padding:3px;transition:background .3s;}
+.tt-knob{width:20px;height:20px;border-radius:50%;background:var(--or);transition:transform .3s;font-size:11px;display:flex;align-items:center;justify-content:center;color:#fff;}
+[data-theme="light"] .tt-knob{transform:translateX(22px);}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 56px;transition:all .4s;}
+nav.sc{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);}
+.n-logo{font-family:'Bebas Neue',sans-serif;font-size:1.55rem;letter-spacing:.1em;}
+.n-logo em{color:var(--or);font-style:normal;}
+.n-links{display:flex;gap:30px;list-style:none;}
+.n-links a{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--fg2);transition:color .2s;}
+.n-links a:hover{color:var(--or);}
+.n-r{display:flex;align-items:center;gap:14px;}
+.n-cta{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;background:var(--or);color:#fff;padding:10px 22px;border-radius:3px;transition:transform .2s,box-shadow .2s;}
+.n-cta:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(255,107,43,.4);}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
+.hbg span{width:22px;height:1.5px;background:var(--fg);display:block;}
+
+/* MOBILE MENU */
+.mob{display:none;position:fixed;inset:0;z-index:99;background:var(--bg);flex-direction:column;align-items:center;justify-content:center;gap:28px;}
+.mob.open{display:flex;}
+.mob a{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:.08em;color:var(--fg);}
+.mob a:hover{color:var(--or);}
+.mob-x{position:absolute;top:24px;right:28px;background:none;border:none;font-size:1.6rem;color:var(--fg);cursor:pointer;}
+
+/* HERO */
+#hero{min-height:100vh;background:var(--bg);padding:0 56px 80px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;}
+.h-mark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(100px,20vw,260px);letter-spacing:.06em;color:var(--mark);white-space:nowrap;pointer-events:none;user-select:none;line-height:1;animation:mfloat 12s ease-in-out infinite;}
+@keyframes mfloat{0%,100%{transform:translate(-50%,-50%) translateY(0)}50%{transform:translate(-50%,-50%) translateY(-18px)}}
+.h-tmeta{position:absolute;top:108px;right:56px;font-family:'DM Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--fg3);text-align:right;line-height:2;}
+.h-lmeta{position:absolute;top:45%;left:56px;font-family:'DM Mono',monospace;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--fg3);writing-mode:vertical-lr;}
+.h-plus{position:absolute;color:var(--or);font-weight:800;pointer-events:none;}
+.h-p1{top:36%;right:16%;font-size:1.8rem;animation:spin1 25s linear infinite;}
+.h-p2{top:55%;left:34%;font-size:1rem;opacity:.4;animation:spin1 18s linear infinite reverse;}
+.h-ast{position:absolute;top:37%;right:27%;font-size:2rem;color:var(--or);animation:pulse1 3s ease-in-out infinite;}
+@keyframes spin1{to{transform:rotate(360deg)}}
+@keyframes pulse1{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+.h-label{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--or);display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.h-label::before{content:'';width:20px;height:1px;background:var(--or);}
+.h-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,10vw,11rem);line-height:.92;letter-spacing:.01em;color:var(--fg);animation:hIn .9s cubic-bezier(.16,1,.3,1) both;}
+.h-title .or{color:var(--or);}
+.h-title .l2{display:block;padding-left:clamp(36px,8vw,110px);}
+.h-title .l3{display:block;}
+@keyframes hIn{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:translateY(0)}}
+.h-bot{display:flex;align-items:flex-end;justify-content:space-between;margin-top:40px;position:relative;z-index:2;}
+.h-sub{max-width:380px;font-size:.95rem;line-height:1.75;color:var(--fg2);font-weight:300;animation:hIn .9s cubic-bezier(.16,1,.3,1) .15s both;}
+.h-sub strong{color:var(--fg);font-weight:500;}
+.h-ctas{display:flex;gap:12px;animation:hIn .9s cubic-bezier(.16,1,.3,1) .25s both;}
+.bf{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;background:var(--or);color:#fff;padding:13px 26px;border-radius:3px;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:8px;}
+.bf:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(255,107,43,.4);}
+.bo{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--fg2);padding:13px 26px;border-radius:3px;border:1px solid var(--border2);cursor:pointer;transition:border-color .2s,color .2s;display:inline-flex;align-items:center;gap:8px;}
+.bo:hover{border-color:var(--or);color:var(--or);}
+.h-stats{display:flex;gap:40px;animation:hIn .9s cubic-bezier(.16,1,.3,1) .35s both;}
+.hs-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;line-height:1;color:var(--fg);}
+.hs-num span{color:var(--or);}
+.hs-lbl{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--fg3);margin-top:2px;}
+
+/* MARQUEE */
+.mq-strip{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--inv-bg);padding:16px 0;}
+.mq-tr{display:flex;gap:56px;white-space:nowrap;animation:mq 20s linear infinite;width:max-content;}
+.mq-it{font-family:'DM Mono',monospace;font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--inv-fg);display:flex;align-items:center;gap:18px;}
+.mq-it span{color:var(--or);font-size:1rem;}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+.sec{position:relative;}
+.wrap{max-width:1200px;margin:0 auto;padding:0 56px;}
+.sp{padding:110px 0;}
+.stag{font-family:'DM Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--or);display:flex;align-items:center;gap:8px;margin-bottom:16px;}
+.stag::before{content:'[';}.stag::after{content:']';}
+.sh{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,5vw,4rem);letter-spacing:.02em;line-height:1;color:var(--fg);margin-bottom:12px;}
+.ss{font-size:.93rem;color:var(--fg2);line-height:1.75;font-weight:300;max-width:500px;margin-bottom:56px;}
+.rv{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease;}
+.rv.vs{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* SERVICES */
+#services{background:var(--bg2);}
+.sv-layout{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.sv-list{border-right:1px solid var(--border);}
+.sv-item{padding:28px 40px 28px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:20px;transition:background .25s;cursor:pointer;position:relative;}
+.sv-item:last-child{border-bottom:none;}
+.sv-item:hover{background:var(--or3);}
+.sv-item:hover .sv-arr{opacity:1;transform:translate(0,0);}
+.sv-num{font-family:'DM Mono',monospace;font-size:.63rem;color:var(--or);letter-spacing:.1em;padding-top:4px;flex-shrink:0;width:28px;}
+.sv-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.04em;color:var(--fg);margin-bottom:5px;}
+.sv-desc{font-size:.83rem;color:var(--fg2);line-height:1.65;font-weight:300;}
+.sv-tag{display:inline-block;margin-top:9px;font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.08em;color:var(--or);background:var(--or2);padding:3px 10px;border-radius:2px;}
+.sv-arr{font-size:1rem;color:var(--or);flex-shrink:0;opacity:0;transform:translate(-6px,6px);transition:opacity .2s,transform .2s;}
+.sv-r{padding-left:56px;display:flex;flex-direction:column;justify-content:center;}
+.sv-bignum{font-family:'Bebas Neue',sans-serif;font-size:clamp(6rem,13vw,13rem);line-height:1;color:var(--mark);pointer-events:none;user-select:none;transition:color .3s;}
+.sv-box{margin-top:28px;padding:26px;background:var(--card);border:1px solid var(--border);border-radius:6px;}
+.sv-box-lbl{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--fg3);margin-bottom:10px;}
+.sv-box-t{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.04em;color:var(--fg);margin-bottom:7px;}
+.sv-box-d{font-size:.85rem;color:var(--fg2);line-height:1.65;font-weight:300;}
+
+/* PORTFOLIO */
+#portfolio{background:var(--bg);}
+.po-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;}
+.po-hdr .ss{margin-bottom:0;}
+.po-va{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fg2);border:1px solid var(--border2);padding:10px 18px;border-radius:3px;transition:border-color .2s,color .2s;white-space:nowrap;}
+.po-va:hover{border-color:var(--or);color:var(--or);}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:13px;}
+.bc{border-radius:6px;overflow:hidden;position:relative;background:var(--card);border:1px solid var(--border);min-height:200px;cursor:pointer;transition:border-color .3s,transform .3s;}
+.bc:hover{border-color:var(--or);transform:scale(1.018);}
+.bc:nth-child(1){grid-column:span 8;min-height:340px;}
+.bc:nth-child(2){grid-column:span 4;}
+.bc:nth-child(3){grid-column:span 4;}
+.bc:nth-child(4){grid-column:span 5;}
+.bc:nth-child(5){grid-column:span 3;}
+.bc-emo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:.1;}
+.bc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,12,12,.97) 0%,rgba(12,12,12,.25) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:22px;}
+[data-theme="light"] .bc-ov{background:linear-gradient(to top,rgba(240,237,232,.97) 0%,rgba(240,237,232,.4) 55%,transparent 100%);}
+.bc-cat{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--or);margin-bottom:5px;}
+.bc-tit{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.04em;color:var(--fg);margin-bottom:3px;}
+.bc-des{font-size:.78rem;color:var(--fg2);line-height:1.55;font-weight:300;}
+.bc-arr{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:var(--or2);border:1px solid rgba(255,107,43,.3);display:flex;align-items:center;justify-content:center;color:var(--or);font-size:.85rem;opacity:0;transform:scale(.7);transition:opacity .25s,transform .25s;}
+.bc:hover .bc-arr{opacity:1;transform:scale(1);}
+.bc-or{background:var(--or) !important;border-color:var(--or) !important;}
+.bc-or .bc-ov{background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 60%);}
+.bc-or .bc-tit,.bc-or .bc-des{color:#fff;}
+.bc-or .bc-cat{color:rgba(255,255,255,.7);}
+.bc-li{background:var(--inv-bg) !important;border-color:var(--border2) !important;}
+.bc-li .bc-ov{background:linear-gradient(to top,rgba(12,12,12,.94) 0%,transparent 60%);}
+[data-theme="light"] .bc-li .bc-ov{background:linear-gradient(to top,rgba(240,237,232,.96) 0%,transparent 60%);}
+.bc-li .bc-tit{color:var(--fg);}
+.bc-li .bc-des{color:var(--fg2);}
+
+/* TEAM */
+#team{background:var(--bg2);}
+.tg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.tc{border:1px solid var(--border);border-radius:6px;overflow:hidden;background:var(--card);transition:transform .3s,border-color .3s;}
+.tc:hover{transform:translateY(-8px);border-color:var(--or);}
+.tc-top{height:190px;background:var(--bg3);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.tc-top::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 90%,var(--or2),transparent 60%);}
+.tc-av{width:84px;height:84px;border-radius:50%;border:2px solid var(--or);background:var(--bg);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--or);position:relative;z-index:1;box-shadow:0 0 0 5px var(--or2);}
+.tc-badge{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;background:var(--or);color:#fff;padding:4px 12px;border-radius:2px;white-space:nowrap;}
+.tc-body{padding:22px 24px;}
+.tc-name{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.04em;color:var(--fg);}
+.tc-role{font-size:.78rem;color:var(--or);font-weight:500;margin-bottom:10px;letter-spacing:.04em;}
+.tc-bio{font-size:.83rem;color:var(--fg2);line-height:1.7;font-weight:300;margin-bottom:14px;}
+.tc-skills{display:flex;flex-wrap:wrap;gap:6px;}
+.tc-sk{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.06em;color:var(--fg2);background:var(--bg2);border:1px solid var(--border2);padding:3px 9px;border-radius:2px;transition:border-color .2s,color .2s;}
+.tc:hover .tc-sk{border-color:var(--or2);}
+
+/* TESTIMONIALS */
+#testimonials{background:var(--bg);}
+.ts-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;}
+.ts-ctr{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;letter-spacing:.04em;color:var(--fg3);line-height:1;}
+.ts-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);border-radius:6px;overflow:hidden;}
+.tt{padding:32px 28px;border-right:1px solid var(--border);transition:background .25s;position:relative;}
+.tt:last-child{border-right:none;}
+.tt:nth-child(2){background:var(--card);}
+.tt:hover{background:var(--or3);}
+.tt-n{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--fg3);letter-spacing:.1em;margin-bottom:18px;}
+.tt-q{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--or);line-height:1;margin-bottom:10px;}
+.tt-t{font-size:.9rem;color:var(--fg2);line-height:1.75;font-weight:300;font-style:italic;margin-bottom:20px;}
+.tt-stars{display:flex;gap:3px;margin-bottom:18px;}
+.tt-stars span{color:var(--or);font-size:.78rem;}
+.tt-auth{display:flex;align-items:center;gap:12px;}
+.tt-av{width:38px;height:38px;border-radius:50%;flex-shrink:0;background:var(--or);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:.85rem;color:#fff;}
+.tt-nm{font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.06em;color:var(--fg);}
+.tt-rl{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--fg3);letter-spacing:.06em;margin-top:2px;}
+
+/* UPDATES */
+#updates{background:var(--bg2);}
+.ug{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.uc{border:1px solid var(--border);border-radius:6px;overflow:hidden;background:var(--card);transition:transform .3s,border-color .3s;}
+.uc:hover{transform:translateY(-6px);border-color:var(--or);}
+.uc-top{height:120px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;background:var(--bg3);position:relative;}
+.ub{position:absolute;top:12px;right:12px;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:2px;}
+.bl{background:rgba(34,197,94,.15);color:#22c55e;}
+.bs{background:var(--or2);color:var(--or);}
+.bp{background:rgba(148,163,184,.12);color:#94a3b8;}
+.uc-body{padding:20px 22px;}
+.uc-d{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--fg3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px;}
+.uc-t{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:.04em;color:var(--fg);margin-bottom:7px;}
+.uc-ds{font-size:.82rem;color:var(--fg2);line-height:1.65;font-weight:300;}
+
+/* ABOUT */
+#about{background:var(--bg);}
+.ag{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center;}
+.a-txt{font-size:.93rem;color:var(--fg2);line-height:1.85;font-weight:300;margin-bottom:28px;}
+.a-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:44px;}
+.ap{font-family:'DM Mono',monospace;font-size:.63rem;letter-spacing:.08em;text-transform:uppercase;color:var(--fg2);border:1px solid var(--border2);padding:6px 14px;border-radius:2px;transition:border-color .2s,color .2s;}
+.ap:hover{border-color:var(--or);color:var(--or);}
+.asg{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.as{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:22px;transition:border-color .3s,transform .3s;}
+.as:hover{border-color:var(--or);transform:translateY(-4px);}
+.as.sp2{grid-column:span 2;background:var(--or);border-color:var(--or);}
+.as-n{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;letter-spacing:.02em;color:var(--fg);line-height:1;}
+.as-n span{color:var(--or);}
+.as.sp2 .as-n{color:#fff;}
+.as.sp2 .as-n span{color:rgba(255,255,255,.55);}
+.as-l{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fg3);margin-top:5px;}
+.as.sp2 .as-l{color:rgba(255,255,255,.55);}
+
+/* CONTACT */
+#contact{background:var(--bg2);}
+.cl-layout{display:grid;grid-template-columns:1fr 1.3fr;gap:80px;align-items:start;}
+.clinks{display:flex;flex-direction:column;gap:11px;margin-top:8px;}
+.clink{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:4px;background:var(--card);border:1px solid var(--border);color:var(--fg);transition:border-color .2s,transform .2s,background .2s;}
+.clink:hover{border-color:var(--or);transform:translateX(6px);background:var(--or3);}
+.ci{width:36px;height:36px;border-radius:4px;background:var(--or2);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;transition:background .2s;}
+.clink:hover .ci{background:var(--or);}
+.cl{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fg3);}
+.cv{font-size:.87rem;color:var(--fg);margin-top:1px;}
+.ca{margin-left:auto;color:var(--fg3);font-size:.85rem;}
+.cform{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:38px;}
+.cft{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.04em;color:var(--fg);margin-bottom:26px;}
+.fg{margin-bottom:16px;}
+.fg label{display:block;font-family:'DM Mono',monospace;font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--fg3);margin-bottom:6px;}
+.fg input,.fg textarea,.fg select{width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:4px;padding:11px 13px;color:var(--fg);font-family:'DM Sans',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s;appearance:none;}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--fg3);}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--or);}
+.fg textarea{resize:none;height:110px;}
+.fg select option{background:var(--bg2);}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.fsb{width:100%;padding:13px;border-radius:4px;background:var(--or);color:#fff;border:none;cursor:pointer;font-family:'DM Mono',monospace;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;transition:transform .2s,box-shadow .2s;}
+.fsb:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(255,107,43,.4);}
+
+/* FOOTER */
+footer{background:var(--inv-bg);color:var(--inv-fg);padding:76px 56px 36px;}
+.ft{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:44px;padding-bottom:56px;border-bottom:1px solid rgba(12,12,12,.1);}
+[data-theme="dark"] .ft{border-bottom-color:rgba(240,237,232,.1);}
+.ft-logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.1em;color:var(--inv-fg);margin-bottom:12px;}
+.ft-logo em{color:var(--or);font-style:normal;}
+.ft-tl{font-size:.86rem;color:rgba(12,12,12,.45);line-height:1.6;max-width:220px;font-weight:300;margin-bottom:22px;}
+[data-theme="dark"] .ft-tl{color:rgba(240,237,232,.4);}
+.ft-nll{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(12,12,12,.35);margin-bottom:7px;}
+[data-theme="dark"] .ft-nll{color:rgba(240,237,232,.3);}
+.ft-nlr{display:flex;border:1px solid rgba(12,12,12,.12);border-radius:3px;overflow:hidden;}
+[data-theme="dark"] .ft-nlr{border-color:rgba(240,237,232,.12);}
+.ft-nli{flex:1;background:transparent;border:none;outline:none;padding:9px 13px;font-size:.83rem;color:var(--inv-fg);font-family:'DM Sans',sans-serif;}
+.ft-nli::placeholder{color:rgba(12,12,12,.25);}
+[data-theme="dark"] .ft-nli::placeholder{color:rgba(240,237,232,.25);}
+.ft-nlb{background:var(--or);border:none;cursor:pointer;padding:9px 16px;color:#fff;transition:background .2s;}
+.ft-nlb:hover{background:#e05520;}
+.ft-ct{font-family:'DM Mono',monospace;font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(12,12,12,.3);margin-bottom:14px;}
+[data-theme="dark"] .ft-ct{color:rgba(240,237,232,.28);}
+.ft-ls{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.ft-ls a{font-size:.86rem;color:rgba(12,12,12,.55);transition:color .2s;}
+[data-theme="dark"] .ft-ls a{color:rgba(240,237,232,.45);}
+.ft-ls a:hover{color:var(--or);}
+.fb{display:flex;justify-content:space-between;align-items:center;padding-top:26px;flex-wrap:wrap;gap:14px;}
+.fb-c{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.06em;color:rgba(12,12,12,.28);}
+[data-theme="dark"] .fb-c{color:rgba(240,237,232,.22);}
+.fb-m{font-family:'DM Mono',monospace;font-size:.62rem;color:rgba(12,12,12,.28);}
+[data-theme="dark"] .fb-m{color:rgba(240,237,232,.22);}
+.fb-m span{color:var(--or);}
+.fb-soc{display:flex;gap:9px;}
+.fsi{width:33px;height:33px;border-radius:3px;border:1px solid rgba(12,12,12,.1);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.62rem;color:rgba(12,12,12,.4);text-transform:uppercase;transition:border-color .2s,color .2s;}
+[data-theme="dark"] .fsi{border-color:rgba(240,237,232,.1);color:rgba(240,237,232,.35);}
+.fsi:hover{border-color:var(--or);color:var(--or);}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .sv-layout{grid-template-columns:1fr;}.sv-r{display:none;}
+  .ag{grid-template-columns:1fr;gap:44px;}
+  .cl-layout{grid-template-columns:1fr;}
+  .ft{grid-template-columns:1fr 1fr;}
+  .bc:nth-child(1){grid-column:span 12;}
+  .bc:nth-child(2){grid-column:span 6;}.bc:nth-child(3){grid-column:span 6;}
+  .bc:nth-child(4){grid-column:span 6;}.bc:nth-child(5){grid-column:span 6;}
+}
+@media(max-width:768px){
+  nav{padding:16px 24px;}.n-links,.n-cta{display:none;}.hbg{display:flex;}
+  .tt-btn{right:54px;top:18px;}
+  #hero{padding:0 24px 56px;}.h-lmeta{display:none;}
+  .h-title{font-size:clamp(3rem,15vw,6rem);}
+  .h-bot{flex-direction:column;align-items:flex-start;gap:22px;}
+  .h-stats{flex-wrap:wrap;gap:22px;}
+  .wrap{padding:0 24px;}.sp{padding:70px 0;}
+  .tg{grid-template-columns:1fr;}
+  .ts-grid{grid-template-columns:1fr;}.tt{border-right:none;border-bottom:1px solid var(--border);}
+  .ug{grid-template-columns:1fr;}
+  .asg{grid-template-columns:1fr;}.as.sp2{grid-column:span 1;}
+  .ft{grid-template-columns:1fr;gap:28px;}
+  footer{padding:52px 24px 26px;}
+  .fb{flex-direction:column;align-items:flex-start;}
+  .po-hdr{flex-direction:column;align-items:flex-start;gap:16px;}
+  .ts-hdr{flex-direction:column;align-items:flex-start;gap:12px;}
+}
+</style>
+</head>
+<body>
+
+<div class="cur-d" id="cD"></div>
+<div class="cur-r" id="cR"></div>
+
+<!-- THEME TOGGLE -->
+<button class="tt-btn" id="ttBtn" title="Toggle theme">
+  <div class="tt-knob" id="ttKnob">☽</div>
+</button>
+
+<!-- MOBILE MENU -->
+<div class="mob" id="mob">
+  <button class="mob-x" onclick="document.getElementById('mob').classList.remove('open')">✕</button>
+  <a href="#services" onclick="document.getElementById('mob').classList.remove('open')">Services</a>
+  <a href="#portfolio" onclick="document.getElementById('mob').classList.remove('open')">Portfolio</a>
+  <a href="#team" onclick="document.getElementById('mob').classList.remove('open')">Team</a>
+  <a href="#about" onclick="document.getElementById('mob').classList.remove('open')">About</a>
+  <a href="#updates" onclick="document.getElementById('mob').classList.remove('open')">Updates</a>
+  <a href="#contact" onclick="document.getElementById('mob').classList.remove('open')">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="n-logo">ONE<em>TAG</em></a>
+  <ul class="n-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#updates">Updates</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="n-r">
+    <a href="#contact" class="n-cta">Get a Quote</a>
+    <button class="hbg" onclick="document.getElementById('mob').classList.add('open')"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="h-mark">ONETAG</div>
+  <div class="h-tmeta">#IT_SERVICES<br>EST. 2025<br>NAGPUR, IN</div>
+  <div class="h-lmeta">// WEB · MOBILE · DESIGN · BACKEND</div>
+  <div class="h-plus h-p1">+</div>
+  <div class="h-plus h-p2">✦</div>
+  <div class="h-ast">✦</div>
+
+  <div style="position:relative;z-index:2">
+    <div class="h-label">OneTag IT Services — Est. 2025</div>
+    <h1 class="h-title">
+      YOUR VISION.<br>
+      <span class="l2">OUR <span class="or">CODE.</span></span>
+      <span class="l3">ONE TAG.</span>
+    </h1>
+  </div>
+
+  <div class="h-bot">
+    <p class="h-sub">A passionate <strong>startup trio</strong> from Nagpur building modern digital products — web apps, mobile apps, niche landing pages, and everything in between.</p>
+    <div class="h-ctas">
+      <a href="#portfolio" class="bf">View Work ↗</a>
+      <a href="#contact" class="bo">Start Project →</a>
+    </div>
+    <div class="h-stats">
+      <div><div class="hs-num">3<span>+</span></div><div class="hs-lbl">Founders</div></div>
+      <div><div class="hs-num">8<span>+</span></div><div class="hs-lbl">Services</div></div>
+      <div><div class="hs-num">∞</div><div class="hs-lbl">Ambition</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq-strip">
+  <div class="mq-tr">
+    <div class="mq-it">Web Development <span>✦</span></div>
+    <div class="mq-it">Mobile Apps <span>✦</span></div>
+    <div class="mq-it">UI/UX Design <span>✦</span></div>
+    <div class="mq-it">Graphic Design <span>✦</span></div>
+    <div class="mq-it">Backend APIs <span>✦</span></div>
+    <div class="mq-it">Niche Sites <span>✦</span></div>
+    <div class="mq-it">MERN Stack <span>✦</span></div>
+    <div class="mq-it">Flutter <span>✦</span></div>
+    <div class="mq-it">Web Development <span>✦</span></div>
+    <div class="mq-it">Mobile Apps <span>✦</span></div>
+    <div class="mq-it">UI/UX Design <span>✦</span></div>
+    <div class="mq-it">Graphic Design <span>✦</span></div>
+    <div class="mq-it">Backend APIs <span>✦</span></div>
+    <div class="mq-it">Niche Sites <span>✦</span></div>
+    <div class="mq-it">MERN Stack <span>✦</span></div>
+    <div class="mq-it">Flutter <span>✦</span></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" class="sec sp">
+  <div class="wrap">
+    <div class="rv"><span class="stag">What We Do</span></div>
+    <div class="rv d1"><h2 class="sh">SERVICES BUILT<br>FOR REAL RESULTS</h2></div>
+    <div class="rv d2"><p class="ss">From concept to deployment — we handle the full digital stack so you don't look elsewhere.</p></div>
+    <div class="sv-layout">
+      <div class="sv-list rv d1">
+        <div class="sv-item"><div class="sv-num">01</div><div><div class="sv-name">Web Design & Development</div><div class="sv-desc">Responsive, fast, beautiful websites built with MERN, React, Node.js. We ship experiences that convert visitors into clients.</div><span class="sv-tag">MERN · React · Node</span></div><div class="sv-arr">↗</div></div>
+        <div class="sv-item"><div class="sv-num">02</div><div><div class="sv-name">Mobile App Development</div><div class="sv-desc">Flutter & Android apps with native performance and stunning UI for every screen size.</div><span class="sv-tag">Flutter · Android · Dart</span></div><div class="sv-arr">↗</div></div>
+        <div class="sv-item"><div class="sv-num">03</div><div><div class="sv-name">UI/UX Design</div><div class="sv-desc">User-first design that works — wireframes, prototypes, and handoff-ready designs.</div><span class="sv-tag">Figma · Prototyping</span></div><div class="sv-arr">↗</div></div>
+        <div class="sv-item"><div class="sv-num">04</div><div><div class="sv-name">Graphic Design</div><div class="sv-desc">Logos, brand kits, social content, marketing collateral — brand identity from scratch.</div><span class="sv-tag">Branding · Print · Social</span></div><div class="sv-arr">↗</div></div>
+        <div class="sv-item"><div class="sv-num">05</div><div><div class="sv-name">Backend & API Development</div><div class="sv-desc">Scalable Java & .NET backends with clean REST APIs and solid database architecture.</div><span class="sv-tag">Java · .NET · Spring · SQL</span></div><div class="sv-arr">↗</div></div>
+        <div class="sv-item"><div class="sv-num">06</div><div><div class="sv-name">Niche Single-Page Sites</div><div class="sv-desc">Doctors, gyms, cafes, salons — bespoke landing pages that attract local clients and build trust fast.</div><span class="sv-tag">Doctor · Gym · Cafe · Salon</span></div><div class="sv-arr">↗</div></div>
+      </div>
+      <div class="sv-r rv d2">
+        <div class="sv-bignum" id="svBig">06</div>
+        <div class="sv-box">
+          <div class="sv-box-lbl">[Currently Featuring]</div>
+          <div class="sv-box-t" id="svBoxT">Niche Single-Page Sites</div>
+          <div class="sv-box-d" id="svBoxD">Dedicated landing pages for local businesses — doctors, gyms, cafes — built to attract clients and build trust at first scroll.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="sec sp">
+  <div class="wrap">
+    <div class="po-hdr">
+      <div>
+        <div class="rv"><span class="stag">Our Work</span></div>
+        <div class="rv d1"><h2 class="sh">PROJECTS THAT<br>SPEAK FOR US</h2></div>
+        <p class="ss rv d2">A curated selection across web, mobile, and design.</p>
+      </div>
+      <a href="#contact" class="po-va rv d3">Have a project? →</a>
+    </div>
+    <div class="bento rv d1">
+      <div class="bc"><div class="bc-emo">🏥</div><div class="bc-ov"><div class="bc-cat">Healthcare · Web</div><div class="bc-tit">Dr. Sharma Clinic — Landing Page</div><div class="bc-des">Modern, trust-building site for a general physician with appointment booking flow.</div></div><div class="bc-arr">↗</div></div>
+      <div class="bc bc-or"><div class="bc-emo" style="opacity:.18;color:#fff">💪</div><div class="bc-ov"><div class="bc-cat">Fitness · Branding + Web</div><div class="bc-tit">IronEdge Gym — Brand & Site</div><div class="bc-des">Bold brand identity and high-energy landing page for a local gym.</div></div><div class="bc-arr">↗</div></div>
+      <div class="bc bc-li"><div class="bc-emo">☕</div><div class="bc-ov"><div class="bc-cat">F&B · Web</div><div class="bc-tit">Brew & Co Cafe</div><div class="bc-des">Minimal aesthetic site with menu integration.</div></div><div class="bc-arr" style="color:var(--fg);background:var(--border);border-color:var(--border2)">↗</div></div>
+      <div class="bc"><div class="bc-emo">📱</div><div class="bc-ov"><div class="bc-cat">Mobile · Flutter</div><div class="bc-tit">TaskFlow App</div><div class="bc-des">Flutter productivity app with clean UI & reminders.</div></div><div class="bc-arr">↗</div></div>
+      <div class="bc"><div class="bc-emo">🎨</div><div class="bc-ov"><div class="bc-cat">Design · Branding</div><div class="bc-tit">Brand Identity Kit</div><div class="bc-des">Full brand system — logo, palette, typography.</div></div><div class="bc-arr">↗</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="sec sp">
+  <div class="wrap">
+    <div class="rv"><span class="stag">The Founders</span></div>
+    <div class="rv d1"><h2 class="sh">THREE FOUNDERS,<br>ONE VISION</h2></div>
+    <div class="rv d2"><p class="ss">Design, backend, mobile — all in-house. We move fast and care about every line of code.</p></div>
+    <div class="tg">
+      <div class="tc rv d1">
+        <div class="tc-top"><div class="tc-av">A</div><div class="tc-badge">Web & Graphic Design</div></div>
+        <div class="tc-body">
+          <div class="tc-name">Aman</div><div class="tc-role">Co-Founder · Designer</div>
+          <div class="tc-bio">The visual brain of OneTag. Aman crafts interfaces and identities that don't just look good — they convert. Every pixel is intentional.</div>
+          <div class="tc-skills"><span class="tc-sk">Web Design</span><span class="tc-sk">Graphic Design</span><span class="tc-sk">UI/UX</span><span class="tc-sk">Figma</span><span class="tc-sk">MERN</span></div>
+        </div>
+      </div>
+      <div class="tc rv d2">
+        <div class="tc-top"><div class="tc-av">T</div><div class="tc-badge">Backend · Java Full Stack</div></div>
+        <div class="tc-body">
+          <div class="tc-name">Tanmay</div><div class="tc-role">Co-Founder · Backend Engineer</div>
+          <div class="tc-bio">The engine room of OneTag. Tanmay architects backends that scale — reliable, clean, and built for the long haul. If it needs to work, Tanmay builds it.</div>
+          <div class="tc-skills"><span class="tc-sk">Java</span><span class="tc-sk">Full Stack</span><span class="tc-sk">Spring Boot</span><span class="tc-sk">System Design</span><span class="tc-sk">SQL</span></div>
+        </div>
+      </div>
+      <div class="tc rv d3">
+        <div class="tc-top"><div class="tc-av">G</div><div class="tc-badge">.NET · Flutter · Android</div></div>
+        <div class="tc-body">
+          <div class="tc-name">Gajendra</div><div class="tc-role">Co-Founder · Mobile & .NET Dev</div>
+          <div class="tc-bio">The multi-platform powerhouse. Gajendra covers .NET, Flutter, and Android — ensuring OneTag delivers across every platform a client could need.</div>
+          <div class="tc-skills"><span class="tc-sk">.NET</span><span class="tc-sk">Flutter</span><span class="tc-sk">Android</span><span class="tc-sk">C#</span><span class="tc-sk">Dart</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="sec sp">
+  <div class="wrap">
+    <div class="ts-hdr">
+      <div>
+        <div class="rv"><span class="stag">Client Love</span></div>
+        <div class="rv d1"><h2 class="sh">WHAT CLIENTS SAY</h2></div>
+      </div>
+      <div class="ts-ctr rv d2">01/3</div>
+    </div>
+    <div class="ts-grid rv d1">
+      <div class="tt">
+        <div class="tt-n">[01/3] · [Testimonial]</div>
+        <div class="tt-q">"</div>
+        <div class="tt-t">Aman and the team delivered a website for my clinic that I couldn't have imagined. Patients actually compliment it. Professional, fast, and incredibly responsive.</div>
+        <div class="tt-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="tt-auth"><div class="tt-av">DS</div><div><div class="tt-nm">Dr. Sanjay Patil</div><div class="tt-rl">General Physician, Nagpur</div></div></div>
+      </div>
+      <div class="tt">
+        <div class="tt-n">[02/3] · [Testimonial]</div>
+        <div class="tt-q">"</div>
+        <div class="tt-t">We needed an app and a website — they handled both without missing a beat. Gajendra's Flutter work is seriously impressive. Our members love the app.</div>
+        <div class="tt-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="tt-auth"><div class="tt-av">RK</div><div><div class="tt-nm">Rahul Khandelwal</div><div class="tt-rl">Owner, IronEdge Gym</div></div></div>
+      </div>
+      <div class="tt">
+        <div class="tt-n">[03/3] · [Testimonial]</div>
+        <div class="tt-q">"</div>
+        <div class="tt-t">OneTag turned our cafe's online presence from zero to stunning. The site brings in new customers every week. Best investment we've made for the business.</div>
+        <div class="tt-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="tt-auth"><div class="tt-av">PM</div><div><div class="tt-nm">Priya Mehta</div><div class="tt-rl">Founder, Brew & Co Cafe</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UPDATES -->
+<section id="updates" class="sec sp">
+  <div class="wrap">
+    <div class="rv"><span class="stag">What's Cooking</span></div>
+    <div class="rv d1"><h2 class="sh">UPDATES &<br>UPCOMING PROJECTS</h2></div>
+    <div class="rv d2"><p class="ss">We're always building something new. Stay tuned.</p></div>
+    <div class="ug">
+      <div class="uc rv d1"><div class="uc-top">🚀<span class="ub bl">In Progress</span></div><div class="uc-body"><div class="uc-d">March 2025</div><div class="uc-t">OneTag Client Portal</div><div class="uc-ds">A dashboard where clients track project progress, share feedback, and access deliverables — all in one place.</div></div></div>
+      <div class="uc rv d2"><div class="uc-top">🏥<span class="ub bs">Upcoming</span></div><div class="uc-body"><div class="uc-d">Q2 2025</div><div class="uc-t">Healthcare Site Template Pack</div><div class="uc-ds">Ready-to-launch templates built for doctors, clinics, and diagnostic centers across India.</div></div></div>
+      <div class="uc rv d3"><div class="uc-top">📦<span class="ub bp">Planned</span></div><div class="uc-body"><div class="uc-d">Q3 2025</div><div class="uc-t">OneTag SaaS Starter Kit</div><div class="uc-ds">Full-stack boilerplate with auth, payments, and dashboard — so clients launch SaaS faster.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="sec sp">
+  <div class="wrap">
+    <div class="ag">
+      <div>
+        <div class="rv"><span class="stag">Our Story</span></div>
+        <div class="rv d1"><h2 class="sh">A STARTUP BUILT<br>ON CRAFT & HUSTLE</h2></div>
+        <p class="a-txt rv d2">OneTag was born from a simple idea: small businesses deserve world-class digital products, not just templates. We're three friends from Nagpur who decided to stop waiting and start building.</p>
+        <p class="a-txt rv d2">We work from home, move fast, and care deeply about every pixel and every line of code we ship. No fluff — just quality work and honest communication, every single time.</p>
+        <div class="a-pills rv d3">
+          <span class="ap">Nagpur, India</span><span class="ap">Remote-First</span><span class="ap">Startup Focused</span><span class="ap">MERN Stack</span><span class="ap">Flutter</span><span class="ap">Java · .NET</span>
+        </div>
+      </div>
+      <div class="asg rv d2">
+        <div class="as sp2"><div class="as-n">3 <span>Co-Founders</span></div><div class="as-l">Design · Backend · Mobile — fully in-house</div></div>
+        <div class="as"><div class="as-n">8<span>+</span></div><div class="as-l">Services</div></div>
+        <div class="as"><div class="as-n">100<span>%</span></div><div class="as-l">Remote & Flexible</div></div>
+        <div class="as"><div class="as-n">∞</div><div class="as-l">Ambition</div></div>
+        <div class="as"><div class="as-n">0<span>BS</span></div><div class="as-l">Work Style</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec sp">
+  <div class="wrap">
+    <div class="cl-layout">
+      <div>
+        <div class="rv"><span class="stag">Get In Touch</span></div>
+        <div class="rv d1"><h2 class="sh">LET'S BUILD<br>SOMETHING GREAT</h2></div>
+        <p class="ss rv d2">Have a project in mind? We'd love to hear about it.</p>
+        <div class="clinks rv d3">
+          <a href="mailto:hello@onetag.in" class="clink"><div class="ci">📧</div><div><div class="cl">Email</div><div class="cv">hello@onetag.in</div></div><span class="ca">→</span></a>
+          <a href="https://wa.me/91XXXXXXXXXX" class="clink"><div class="ci">💬</div><div><div class="cl">WhatsApp</div><div class="cv">+91 XXXXX XXXXX</div></div><span class="ca">→</span></a>
+          <a href="tel:+91XXXXXXXXXX" class="clink"><div class="ci">📱</div><div><div class="cl">Phone</div><div class="cv">+91 XXXXX XXXXX</div></div><span class="ca">→</span></a>
+          <a href="https://linkedin.com/company/onetag" class="clink"><div class="ci">💼</div><div><div class="cl">LinkedIn</div><div class="cv">linkedin.com/company/onetag</div></div><span class="ca">→</span></a>
+          <a href="https://instagram.com/onetag" class="clink"><div class="ci">📸</div><div><div class="cl">Instagram</div><div class="cv">@onetag</div></div><span class="ca">→</span></a>
+          <a href="https://github.com/onetag" class="clink"><div class="ci">🐙</div><div><div class="cl">GitHub</div><div class="cv">github.com/onetag</div></div><span class="ca">→</span></a>
+          <a href="https://facebook.com/onetag" class="clink"><div class="ci">🔵</div><div><div class="cl">Facebook</div><div class="cv">facebook.com/onetag</div></div><span class="ca">→</span></a>
+        </div>
+      </div>
+      <div class="cform rv d2">
+        <div class="cft">SEND A MESSAGE</div>
+        <div class="frow">
+          <div class="fg"><label>Name</label><input type="text" placeholder="Your name"/></div>
+          <div class="fg"><label>Email</label><input type="email" placeholder="your@email.com"/></div>
+        </div>
+        <div class="fg"><label>Service Needed</label><select><option value="">Select service...</option><option>Web Design & Development</option><option>Mobile App Development</option><option>UI/UX Design</option><option>Graphic Design</option><option>Backend / API Development</option><option>Single Page Portfolio Site</option><option>Other</option></select></div>
+        <div class="fg"><label>Budget Range</label><select><option value="">Select budget...</option><option>₹5,000 – ₹15,000</option><option>₹15,000 – ₹50,000</option><option>₹50,000 – ₹1,00,000</option><option>₹1,00,000+</option></select></div>
+        <div class="fg"><label>Project Details</label><textarea placeholder="Tell us about your project, goals, timeline..."></textarea></div>
+        <button class="fsb" id="fsb">SEND MESSAGE →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <div>
+      <div class="ft-logo">ONE<em>TAG</em></div>
+      <div class="ft-tl">Your Vision. Our Code. One Tag. — Crafting digital products from Nagpur, India.</div>
+      <div class="ft-nll">Stay Updated</div>
+      <div class="ft-nlr"><input class="ft-nli" type="email" placeholder="your@email.com"/><button class="ft-nlb">→</button></div>
+    </div>
+    <div>
+      <div class="ft-ct">Company</div>
+      <ul class="ft-ls"><li><a href="#about">About Us</a></li><li><a href="#team">Our Team</a></li><li><a href="#updates">Updates</a></li><li><a href="#contact">Contact</a></li></ul>
+    </div>
+    <div>
+      <div class="ft-ct">Services</div>
+      <ul class="ft-ls"><li><a href="#services">Web Dev</a></li><li><a href="#services">Mobile Apps</a></li><li><a href="#services">UI/UX Design</a></li><li><a href="#services">Graphic Design</a></li><li><a href="#services">Backend APIs</a></li><li><a href="#services">Niche Sites</a></li></ul>
+    </div>
+    <div>
+      <div class="ft-ct">Connect</div>
+      <ul class="ft-ls"><li><a href="https://linkedin.com/company/onetag">LinkedIn</a></li><li><a href="https://instagram.com/onetag">Instagram</a></li><li><a href="https://github.com/onetag">GitHub</a></li><li><a href="https://facebook.com/onetag">Facebook</a></li><li><a href="mailto:hello@onetag.in">Email</a></li></ul>
+    </div>
+  </div>
+  <div class="fb">
+    <div class="fb-c">© 2025 OneTag IT Services. All rights reserved.</div>
+    <div class="fb-soc"><a href="#" class="fsi">in</a><a href="#" class="fsi">ig</a><a href="#" class="fsi">gh</a><a href="#" class="fsi">fb</a></div>
+    <div class="fb-m">Built with <span>♥</span> — Nagpur, India</div>
+  </div>
+</footer>
+
+<script>
+// CURSOR
+const cD=document.getElementById('cD'),cR=document.getElementById('cR');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cD.style.cssText=`left:${mx}px;top:${my}px`;});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;cR.style.cssText=`left:${rx}px;top:${ry}px`;requestAnimationFrame(loop);})();
+
+// THEME TOGGLE
+const html=document.documentElement,knob=document.getElementById('ttKnob');
+document.getElementById('ttBtn').addEventListener('click',()=>{
+  const dark=html.getAttribute('data-theme')==='dark';
+  html.setAttribute('data-theme',dark?'light':'dark');
+  knob.textContent=dark?'☀':'☽';
+});
+
+// NAV SCROLL
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('sc',scrollY>60));
+
+// REVEAL
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vs');}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=document.querySelector(a.getAttribute('href'));
+  if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+}));
+
+// SERVICE HOVER
+const svcItems=document.querySelectorAll('.sv-item');
+const svBig=document.getElementById('svBig'),svBT=document.getElementById('svBoxT'),svBD=document.getElementById('svBoxD');
+const svData=[
+  {n:'01',t:'Web Design & Dev',d:'Responsive, fast, beautiful websites built with MERN, React, Node.js. We ship experiences that convert.'},
+  {n:'02',t:'Mobile App Dev',d:'Flutter & Android apps with native performance and stunning UI for every screen size.'},
+  {n:'03',t:'UI/UX Design',d:'User-first design — wireframes, prototypes, and handoff-ready Figma designs that work.'},
+  {n:'04',t:'Graphic Design',d:'Logos, brand kits, social content, marketing collateral — complete brand identity.'},
+  {n:'05',t:'Backend & APIs',d:'Scalable Java & .NET backends with clean REST APIs and solid database architecture.'},
+  {n:'06',t:'Niche Single-Page Sites',d:'Doctors, gyms, cafes, salons — bespoke landing pages that attract local clients fast.'},
+];
+svcItems.forEach((item,i)=>{
+  item.addEventListener('mouseenter',()=>{
+    svBig.textContent='0'+(i+1);
+    svBT.textContent=svData[i].t;
+    svBD.textContent=svData[i].d;
+  });
+});
+
+// FORM
+document.getElementById('fsb').addEventListener('click',function(){
+  this.textContent='✓ SENT!';this.style.background='#22c55e';
+  setTimeout(()=>{this.textContent='SEND MESSAGE →';this.style.background='';},3000);
+});
+</script>
+</body>
+</html>
