@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+
+
 <style>
   :root {
     --black: #0A0A0A;
@@ -129,7 +131,6 @@
   .orb1 { width: 500px; height: 500px; background: radial-gradient(circle, #FF6B2B, transparent); top: -100px; right: -100px; animation-delay: 0s; }
   .orb2 { width: 300px; height: 300px; background: radial-gradient(circle, #FF8C5A, transparent); bottom: 50px; left: 10%; animation-delay: -3s; }
   .orb3 { width: 200px; height: 200px; background: radial-gradient(circle, #FF6B2B, transparent); top: 40%; left: 40%; animation-delay: -5s; opacity: 0.15; }
-
   @keyframes float {
     0%, 100% { transform: translateY(0) scale(1); }
     50% { transform: translateY(-30px) scale(1.05); }
@@ -257,27 +258,16 @@
 
   /* SECTION COMMON */
   section { position: relative; }
-  .section-light {
-    background: var(--white);
-    color: var(--black);
-  }
-  .section-dark {
-    background: #111111;
-    color: var(--white);
-  }
+  .section-light { background: var(--white); color: var(--black); }
+  .section-dark { background: #111111; color: var(--white); }
   .container { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
   .section-pad { padding: 100px 0; }
-
   .section-label {
     display: inline-flex; align-items: center; gap: 10px;
     font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
-    text-transform: uppercase; margin-bottom: 20px;
-    color: var(--orange);
+    text-transform: uppercase; margin-bottom: 20px; color: var(--orange);
   }
-  .section-label::before {
-    content: ''; width: 24px; height: 2px;
-    background: var(--orange); border-radius: 2px;
-  }
+  .section-label::before { content: ''; width: 24px; height: 2px; background: var(--orange); border-radius: 2px; }
   .section-title {
     font-family: 'Syne', sans-serif;
     font-size: clamp(2rem, 4vw, 3rem);
@@ -286,15 +276,11 @@
   }
   .section-sub {
     font-size: 1.05rem; color: var(--gray);
-    max-width: 560px; line-height: 1.7; font-weight: 300;
-    margin-bottom: 60px;
+    max-width: 560px; line-height: 1.7; font-weight: 300; margin-bottom: 60px;
   }
 
   /* REVEAL ANIMATION */
-  .reveal {
-    opacity: 0; transform: translateY(40px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
   .reveal-delay-1 { transition-delay: 0.1s; }
   .reveal-delay-2 { transition-delay: 0.2s; }
@@ -309,84 +295,55 @@
   }
   .marquee-track {
     display: flex; gap: 60px; white-space: nowrap;
-    animation: marquee 20s linear infinite;
-    width: max-content;
+    animation: marquee 20s linear infinite; width: max-content;
   }
   .marquee-item {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.85rem; font-weight: 600;
+    font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 600;
     letter-spacing: 0.08em; text-transform: uppercase;
-    color: rgba(248,248,248,0.3);
-    display: flex; align-items: center; gap: 16px;
+    color: rgba(248,248,248,0.3); display: flex; align-items: center; gap: 16px;
   }
   .marquee-item span { color: var(--orange); font-size: 1rem; }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
   /* SERVICES */
   #services { background: var(--white); }
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .service-card {
     background: #fff; border: 1px solid var(--gray-light);
     border-radius: 20px; padding: 36px 32px;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
-    position: relative; overflow: hidden;
-    cursor: pointer;
+    position: relative; overflow: hidden; cursor: pointer;
   }
   .service-card::before {
     content: ''; position: absolute; inset: 0;
     background: linear-gradient(135deg, var(--orange-light), transparent);
-    opacity: 0; transition: opacity 0.3s ease;
-    border-radius: 20px;
+    opacity: 0; transition: opacity 0.3s ease; border-radius: 20px;
   }
   .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); border-color: var(--orange); }
   .service-card:hover::before { opacity: 1; }
   .service-card:nth-child(1) { grid-column: span 2; }
   .service-card:nth-child(4) { grid-column: span 2; }
-
   .service-icon {
-    width: 52px; height: 52px;
-    background: var(--orange-light); border-radius: 14px;
+    width: 52px; height: 52px; background: var(--orange-light); border-radius: 14px;
     display: flex; align-items: center; justify-content: center;
-    margin-bottom: 24px; font-size: 1.5rem;
-    transition: background 0.3s;
+    margin-bottom: 24px; font-size: 1.5rem; transition: background 0.3s;
   }
   .service-card:hover .service-icon { background: var(--orange); }
   .service-card:hover .service-icon svg { filter: brightness(10); }
-  .service-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem; font-weight: 700;
-    color: var(--black); margin-bottom: 12px;
-    letter-spacing: -0.02em;
-  }
-  .service-desc {
-    font-size: 0.9rem; color: var(--gray);
-    line-height: 1.7; font-weight: 300;
-  }
+  .service-name { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--black); margin-bottom: 12px; letter-spacing: -0.02em; }
+  .service-desc { font-size: 0.9rem; color: var(--gray); line-height: 1.7; font-weight: 300; }
   .service-tag {
-    display: inline-block; margin-top: 16px;
-    font-size: 0.75rem; font-weight: 500;
-    color: var(--orange); background: var(--orange-light);
-    padding: 4px 12px; border-radius: 100px; letter-spacing: 0.04em;
+    display: inline-block; margin-top: 16px; font-size: 0.75rem; font-weight: 500;
+    color: var(--orange); background: var(--orange-light); padding: 4px 12px; border-radius: 100px; letter-spacing: 0.04em;
   }
 
   /* BENTO PORTFOLIO */
   #portfolio { background: #0D0D0D; }
-  .bento-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: auto;
-    gap: 16px;
-  }
+  .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
   .bento-card {
-    border-radius: 20px; overflow: hidden;
-    position: relative; min-height: 240px;
+    border-radius: 20px; overflow: hidden; position: relative; min-height: 240px;
     background: #1A1A1A; border: 1px solid rgba(255,255,255,0.06);
-    transition: transform 0.3s ease, border-color 0.3s;
-    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s; cursor: pointer;
   }
   .bento-card:hover { transform: scale(1.02); border-color: var(--orange); }
   .bento-card:nth-child(1) { grid-column: span 7; min-height: 320px; }
@@ -394,118 +351,67 @@
   .bento-card:nth-child(3) { grid-column: span 4; }
   .bento-card:nth-child(4) { grid-column: span 4; }
   .bento-card:nth-child(5) { grid-column: span 4; }
-
-  .bento-img {
-    width: 100%; height: 100%; object-fit: cover;
-    position: absolute; inset: 0;
-  }
   .bento-overlay {
     position: absolute; inset: 0;
     background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.2) 60%, transparent 100%);
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 28px;
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 28px;
   }
-  .bento-placeholder {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 3rem; opacity: 0.15;
-  }
-  .bento-cat {
-    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--orange); margin-bottom: 8px;
-  }
-  .bento-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem; font-weight: 700; color: var(--white);
-    letter-spacing: -0.02em; margin-bottom: 6px;
-  }
-  .bento-desc {
-    font-size: 0.82rem; color: rgba(248,248,248,0.5);
-    line-height: 1.6; font-weight: 300;
-  }
+  .bento-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 3rem; opacity: 0.15; }
+  .bento-cat { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
+  .bento-title { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--white); letter-spacing: -0.02em; margin-bottom: 6px; }
+  .bento-desc { font-size: 0.82rem; color: rgba(248,248,248,0.5); line-height: 1.6; font-weight: 300; }
   .bento-arrow {
-    position: absolute; top: 24px; right: 24px;
-    width: 36px; height: 36px; border-radius: 50%;
-    background: var(--glass-bg); border: 1px solid var(--glass-border);
-    backdrop-filter: blur(10px);
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; transition: opacity 0.3s;
-    color: var(--white);
+    position: absolute; top: 24px; right: 24px; width: 36px; height: 36px; border-radius: 50%;
+    background: var(--glass-bg); border: 1px solid var(--glass-border); backdrop-filter: blur(10px);
+    display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; color: var(--white);
   }
   .bento-card:hover .bento-arrow { opacity: 1; }
 
   /* TEAM */
   #team { background: var(--white); }
-  .team-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-  }
+  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .team-card {
-    border-radius: 24px; overflow: hidden;
-    background: #fff; border: 1px solid var(--gray-light);
+    border-radius: 24px; overflow: hidden; background: #fff; border: 1px solid var(--gray-light);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
   }
   .team-card:hover { transform: translateY(-8px); box-shadow: 0 30px 80px rgba(0,0,0,0.1); }
   .team-avatar-wrap {
-    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-    height: 220px; display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a); height: 220px;
+    display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
   }
-  .team-avatar-wrap::before {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(circle at 50% 80%, rgba(255,107,43,0.2), transparent 60%);
-  }
+  .team-avatar-wrap::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 80%, rgba(255,107,43,0.2), transparent 60%); }
   .team-avatar {
     width: 100px; height: 100px; border-radius: 50%;
     background: linear-gradient(135deg, var(--orange), #FF8C5A);
     display: flex; align-items: center; justify-content: center;
     font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800;
     color: var(--white); position: relative; z-index: 1;
-    border: 3px solid rgba(255,255,255,0.15);
-    box-shadow: 0 8px 32px rgba(255,107,43,0.3);
+    border: 3px solid rgba(255,255,255,0.15); box-shadow: 0 8px 32px rgba(255,107,43,0.3);
   }
   .team-info { padding: 24px 28px; }
-  .team-name {
-    font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700;
-    color: var(--black); letter-spacing: -0.02em; margin-bottom: 4px;
-  }
+  .team-name { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--black); letter-spacing: -0.02em; margin-bottom: 4px; }
   .team-role { font-size: 0.82rem; color: var(--orange); font-weight: 500; margin-bottom: 12px; letter-spacing: 0.04em; }
   .team-bio { font-size: 0.88rem; color: var(--gray); line-height: 1.65; font-weight: 300; margin-bottom: 18px; }
   .team-skills { display: flex; flex-wrap: wrap; gap: 8px; }
-  .team-skill {
-    font-size: 0.72rem; font-weight: 500;
-    background: var(--orange-light); color: var(--orange);
-    padding: 4px 10px; border-radius: 100px; letter-spacing: 0.03em;
-  }
+  .team-skill { font-size: 0.72rem; font-weight: 500; background: var(--orange-light); color: var(--orange); padding: 4px 10px; border-radius: 100px; letter-spacing: 0.03em; }
 
   /* TESTIMONIALS */
   #testimonials { background: #0D0D0D; }
   .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .testi-card {
-    background: var(--glass-bg); border: 1px solid var(--glass-border);
-    backdrop-filter: blur(20px);
-    border-radius: 20px; padding: 32px 28px;
-    transition: transform 0.3s ease, border-color 0.3s;
-    position: relative;
+    background: var(--glass-bg); border: 1px solid var(--glass-border); backdrop-filter: blur(20px);
+    border-radius: 20px; padding: 32px 28px; transition: transform 0.3s ease, border-color 0.3s;
   }
   .testi-card:hover { transform: translateY(-6px); border-color: rgba(255,107,43,0.3); }
   .testi-card:nth-child(2) { margin-top: 32px; }
-  .testi-quote {
-    font-size: 2.5rem; color: var(--orange); line-height: 1;
-    margin-bottom: 16px; font-family: 'Syne', sans-serif; font-weight: 800;
-  }
-  .testi-text {
-    font-size: 0.92rem; color: rgba(248,248,248,0.7);
-    line-height: 1.75; font-weight: 300; margin-bottom: 24px;
-    font-style: italic;
-  }
+  .testi-quote { font-size: 2.5rem; color: var(--orange); line-height: 1; margin-bottom: 16px; font-family: 'Syne', sans-serif; font-weight: 800; }
+  .testi-text { font-size: 0.92rem; color: rgba(248,248,248,0.7); line-height: 1.75; font-weight: 300; margin-bottom: 24px; font-style: italic; }
   .testi-author { display: flex; align-items: center; gap: 14px; }
   .testi-avatar {
     width: 42px; height: 42px; border-radius: 50%;
     background: linear-gradient(135deg, var(--orange), #FF8C5A);
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--white);
-    flex-shrink: 0;
+    font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--white); flex-shrink: 0;
   }
   .testi-author-name { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--white); }
   .testi-author-role { font-size: 0.78rem; color: var(--gray); margin-top: 2px; }
@@ -516,26 +422,16 @@
   #updates { background: var(--white); }
   .updates-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .update-card {
-    border-radius: 20px; overflow: hidden;
-    background: #fff; border: 1px solid var(--gray-light);
+    border-radius: 20px; overflow: hidden; background: #fff; border: 1px solid var(--gray-light);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .update-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
   .update-top {
-    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-    height: 140px; display: flex; align-items: center; justify-content: center;
-    font-size: 3rem; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a); height: 140px;
+    display: flex; align-items: center; justify-content: center; font-size: 3rem; position: relative; overflow: hidden;
   }
-  .update-top::after {
-    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-    height: 40px;
-    background: linear-gradient(to top, rgba(26,26,26,0.5), transparent);
-  }
-  .update-status {
-    position: absolute; top: 16px; right: 16px;
-    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-    padding: 4px 10px; border-radius: 100px;
-  }
+  .update-top::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40px; background: linear-gradient(to top, rgba(26,26,26,0.5), transparent); }
+  .update-status { position: absolute; top: 16px; right: 16px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; }
   .status-upcoming { background: rgba(255,107,43,0.2); color: var(--orange); }
   .status-inprogress { background: rgba(34,197,94,0.2); color: #22c55e; }
   .status-planned { background: rgba(148,163,184,0.2); color: #94a3b8; }
@@ -546,28 +442,21 @@
 
   /* ABOUT */
   #about { background: #0D0D0D; }
-  .about-inner {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-  }
+  .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
   .about-left .section-title { color: var(--white); }
   .about-left .section-sub { color: rgba(248,248,248,0.5); }
   .about-text { font-size: 0.95rem; color: rgba(248,248,248,0.55); line-height: 1.8; font-weight: 300; margin-bottom: 40px; }
   .about-pills { display: flex; flex-wrap: wrap; gap: 10px; }
   .about-pill {
     border: 1px solid rgba(255,255,255,0.1); color: rgba(248,248,248,0.6);
-    padding: 6px 16px; border-radius: 100px;
-    font-size: 0.8rem; font-weight: 400; letter-spacing: 0.04em;
+    padding: 6px 16px; border-radius: 100px; font-size: 0.8rem; font-weight: 400; letter-spacing: 0.04em;
     transition: border-color 0.2s, color 0.2s;
   }
   .about-pill:hover { border-color: var(--orange); color: var(--orange); }
-  .about-right {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-  }
+  .about-right { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .about-stat-card {
-    background: var(--glass-bg); border: 1px solid var(--glass-border);
-    border-radius: 20px; padding: 28px 24px;
-    backdrop-filter: blur(10px);
-    transition: transform 0.3s ease, border-color 0.3s;
+    background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; padding: 28px 24px;
+    backdrop-filter: blur(10px); transition: transform 0.3s ease, border-color 0.3s;
   }
   .about-stat-card:hover { transform: translateY(-4px); border-color: rgba(255,107,43,0.3); }
   .about-stat-card:first-child { grid-column: span 2; background: linear-gradient(135deg, rgba(255,107,43,0.1), rgba(255,107,43,0.02)); border-color: rgba(255,107,43,0.2); }
@@ -575,33 +464,55 @@
   .about-stat-num span { color: var(--orange); }
   .about-stat-label { font-size: 0.82rem; color: var(--gray); margin-top: 6px; }
 
-  /* CONTACT */
+  /* =============================================
+     CONTACT
+  ============================================= */
   #contact { background: var(--black); overflow: hidden; }
-  .contact-inner {
-    display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start;
-  }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
   .contact-left .section-title { color: var(--white); }
   .contact-left .section-sub { color: rgba(248,248,248,0.5); }
-  .contact-links { display: flex; flex-direction: column; gap: 16px; }
-  .contact-link {
-    display: flex; align-items: center; gap: 16px;
-    padding: 16px 20px; border-radius: 14px;
-    background: var(--glass-bg); border: 1px solid var(--glass-border);
-    text-decoration: none; color: var(--white);
-    transition: border-color 0.2s, background 0.2s, transform 0.2s;
-  }
-  .contact-link:hover { border-color: var(--orange); background: rgba(255,107,43,0.06); transform: translateX(6px); }
-  .contact-link-icon {
-    width: 40px; height: 40px; border-radius: 10px;
-    background: var(--orange-glow); display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem; flex-shrink: 0;
-    transition: background 0.2s;
-  }
-  .contact-link:hover .contact-link-icon { background: var(--orange); }
-  .contact-link-info { flex: 1; }
-  .contact-link-label { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.06em; }
-  .contact-link-val { font-size: 0.92rem; color: var(--white); font-weight: 400; }
+  .contact-links { display: flex; flex-direction: column; gap: 12px; }
 
+  .contact-link {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 18px; border-radius: 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.09);
+    text-decoration: none; color: var(--white);
+    transition: border-color 0.25s, background 0.25s, transform 0.25s;
+  }
+  .contact-link:hover {
+    border-color: var(--orange);
+    background: rgba(255,107,43,0.06);
+    transform: translateX(6px);
+  }
+
+  /* Icon container — white pill so brand SVG colours show perfectly */
+  .contact-link-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: #FFFFFF;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; padding: 7px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.18);
+    transition: box-shadow 0.25s, transform 0.25s;
+  }
+  /* Keep white on hover — brand colours must stay visible */
+  .contact-link:hover .contact-link-icon {
+    background: #FFFFFF;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.28);
+    transform: scale(1.07);
+  }
+  .contact-link-icon svg { width: 100%; height: 100%; display: block; }
+
+  .contact-link-info { flex: 1; }
+  .contact-link-label { font-size: 0.72rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.08em; }
+  .contact-link-val { font-size: 0.9rem; color: var(--white); font-weight: 400; margin-top: 1px; }
+
+  /* Arrow chevron */
+  .contact-link > svg:last-child { opacity: 0.3; flex-shrink: 0; transition: opacity 0.2s, transform 0.2s; }
+  .contact-link:hover > svg:last-child { opacity: 1; transform: translateX(3px); color: var(--orange); }
+
+  /* CONTACT FORM */
   .contact-form {
     background: var(--glass-bg); border: 1px solid var(--glass-border);
     backdrop-filter: blur(20px); border-radius: 24px; padding: 40px;
@@ -617,8 +528,7 @@
     border: 1px solid rgba(255,255,255,0.1); border-radius: 10px;
     padding: 13px 16px; color: var(--white);
     font-family: 'DM Sans', sans-serif; font-size: 0.92rem;
-    outline: none; transition: border-color 0.2s, background 0.2s;
-    appearance: none;
+    outline: none; transition: border-color 0.2s, background 0.2s; appearance: none;
   }
   .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(248,248,248,0.2); }
   .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
@@ -637,14 +547,8 @@
   .form-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,107,43,0.45); }
 
   /* FOOTER */
-  footer {
-    background: #050505; border-top: 1px solid rgba(255,255,255,0.06);
-    padding: 48px 60px 32px;
-  }
-  .footer-inner {
-    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;
-    margin-bottom: 32px;
-  }
+  footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.06); padding: 48px 60px 32px; }
+  .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; margin-bottom: 32px; }
   .footer-logo { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--white); }
   .footer-logo span { color: var(--orange); }
   .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
@@ -678,17 +582,13 @@
   /* RESPONSIVE */
   @media (max-width: 1024px) {
     .services-grid { grid-template-columns: repeat(2, 1fr); }
-    .service-card:nth-child(1),
-    .service-card:nth-child(4) { grid-column: span 1; }
+    .service-card:nth-child(1), .service-card:nth-child(4) { grid-column: span 1; }
     .bento-card:nth-child(1) { grid-column: span 12; }
     .bento-card:nth-child(2) { grid-column: span 6; }
-    .bento-card:nth-child(3),
-    .bento-card:nth-child(4),
-    .bento-card:nth-child(5) { grid-column: span 4; }
+    .bento-card:nth-child(3), .bento-card:nth-child(4), .bento-card:nth-child(5) { grid-column: span 4; }
     .about-inner { grid-template-columns: 1fr; gap: 48px; }
     .contact-inner { grid-template-columns: 1fr; }
   }
-
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
     .nav-links, .nav-cta { display: none; }
@@ -778,23 +678,11 @@
     </div>
   </div>
   <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="hero-stat-num">3<span>+</span></div>
-      <div class="hero-stat-label">Core Team</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">8<span>+</span></div>
-      <div class="hero-stat-label">Services</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">100<span>%</span></div>
-      <div class="hero-stat-label">Committed</div>
-    </div>
+    <div class="hero-stat"><div class="hero-stat-num">3<span>+</span></div><div class="hero-stat-label">Core Team</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">8<span>+</span></div><div class="hero-stat-label">Services</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">100<span>%</span></div><div class="hero-stat-label">Committed</div></div>
   </div>
-  <div class="scroll-indicator">
-    <div class="scroll-line"></div>
-    <span class="scroll-text">Scroll</span>
-  </div>
+  <div class="scroll-indicator"><div class="scroll-line"></div><span class="scroll-text">Scroll</span></div>
 </section>
 
 <!-- MARQUEE -->
@@ -827,49 +715,37 @@
     <div class="reveal reveal-delay-2"><p class="section-sub">From idea to deployment — we cover the full digital stack so you don't have to look anywhere else.</p></div>
     <div class="services-grid">
       <div class="service-card reveal reveal-delay-1">
-        <div class="service-icon">
-          <svg width="24" height="24" fill="none" stroke="#FF6B2B" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        </div>
+        <div class="service-icon"><svg width="24" height="24" fill="none" stroke="#FF6B2B" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
         <div class="service-name">Web Design & Development</div>
         <div class="service-desc">Responsive, high-performance websites built with modern tech stacks. MERN, React, Node — we ship fast and ship right.</div>
         <span class="service-tag">MERN Stack</span>
       </div>
       <div class="service-card reveal reveal-delay-2">
-        <div class="service-icon">
-          <svg width="24" height="24" fill="none" stroke="#FF6B2B" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
-        </div>
+        <div class="service-icon"><svg width="24" height="24" fill="none" stroke="#FF6B2B" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
         <div class="service-name">Mobile App Development</div>
         <div class="service-desc">Flutter & Android apps that feel native, perform fast, and look stunning on every screen size.</div>
         <span class="service-tag">Flutter · Android</span>
       </div>
       <div class="service-card reveal reveal-delay-1">
-        <div class="service-icon">
-          <svg width="24" height="24" fill="none" stroke="#FF6B2B" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        </div>
+        <div class="service-icon"><svg width="24" height="24" fill="none" stroke="#FF6B2B" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
         <div class="service-name">UI/UX Design</div>
         <div class="service-desc">User-first design that converts visitors into customers — wireframes, prototypes, and polished final designs.</div>
         <span class="service-tag">Figma · Prototyping</span>
       </div>
       <div class="service-card reveal reveal-delay-2">
-        <div class="service-icon">
-          <svg width="24" height="24" fill="none" stroke="#FF6B2B" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
-        </div>
+        <div class="service-icon"><svg width="24" height="24" fill="none" stroke="#FF6B2B" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div>
         <div class="service-name">Graphic Design</div>
         <div class="service-desc">Logos, brand kits, social media visuals, and marketing collateral that make your brand impossible to ignore.</div>
         <span class="service-tag">Branding · Print · Digital</span>
       </div>
       <div class="service-card reveal reveal-delay-1">
-        <div class="service-icon">
-          <svg width="24" height="24" fill="none" stroke="#FF6B2B" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/><circle cx="18" cy="15" r="4"/><path d="M18 13v2l1 1"/></svg>
-        </div>
+        <div class="service-icon"><svg width="24" height="24" fill="none" stroke="#FF6B2B" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/><circle cx="18" cy="15" r="4"/><path d="M18 13v2l1 1"/></svg></div>
         <div class="service-name">Backend & API Development</div>
         <div class="service-desc">Scalable Java & .NET backends, RESTful APIs, database architecture — the engine behind your product.</div>
         <span class="service-tag">Java · .NET · Node.js</span>
       </div>
       <div class="service-card reveal reveal-delay-2">
-        <div class="service-icon">
-          <svg width="24" height="24" fill="none" stroke="#FF6B2B" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
-        </div>
+        <div class="service-icon"><svg width="24" height="24" fill="none" stroke="#FF6B2B" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></div>
         <div class="service-name">Niche Single-Page Sites</div>
         <div class="service-desc">Dedicated landing pages for doctors, gyms, cafes, salons & more — built to attract local clients and build trust fast.</div>
         <span class="service-tag">Doctor · Gym · Cafe · Salon</span>
@@ -885,57 +761,14 @@
     <div class="reveal reveal-delay-1"><h2 class="section-title" style="color:var(--white)">Projects That<br>Speak for Us</h2></div>
     <div class="reveal reveal-delay-2"><p class="section-sub" style="color:rgba(248,248,248,0.45); margin-bottom:40px">A curated selection of work across web, mobile, and design disciplines.</p></div>
     <div class="bento-grid reveal reveal-delay-1">
-      <div class="bento-card">
-        <div class="bento-placeholder">🏥</div>
-        <div class="bento-overlay">
-          <div class="bento-cat">Healthcare · Web</div>
-          <div class="bento-title">Dr. Sharma Clinic — Landing Page</div>
-          <div class="bento-desc">A modern, trust-building single-page site for a general physician clinic with appointment booking.</div>
-        </div>
-        <div class="bento-arrow">↗</div>
-      </div>
-      <div class="bento-card">
-        <div class="bento-placeholder">💪</div>
-        <div class="bento-overlay">
-          <div class="bento-cat">Fitness · Web</div>
-          <div class="bento-title">IronEdge Gym — Brand & Site</div>
-          <div class="bento-desc">Bold branding + high-energy landing page for a local gym startup.</div>
-        </div>
-        <div class="bento-arrow">↗</div>
-      </div>
-      <div class="bento-card">
-        <div class="bento-placeholder">☕</div>
-        <div class="bento-overlay">
-          <div class="bento-cat">F&B · Web</div>
-          <div class="bento-title">Brew & Co Cafe</div>
-          <div class="bento-desc">Minimal, aesthetic site with menu integration.</div>
-        </div>
-        <div class="bento-arrow">↗</div>
-      </div>
-      <div class="bento-card">
-        <div class="bento-placeholder">📱</div>
-        <div class="bento-overlay">
-          <div class="bento-cat">Mobile · Flutter</div>
-          <div class="bento-title">TaskFlow App</div>
-          <div class="bento-desc">Productivity Flutter app with clean UI.</div>
-        </div>
-        <div class="bento-arrow">↗</div>
-      </div>
-      <div class="bento-card">
-        <div class="bento-placeholder">🎨</div>
-        <div class="bento-overlay">
-          <div class="bento-cat">Design · Branding</div>
-          <div class="bento-title">Brand Identity Kit</div>
-          <div class="bento-desc">Complete brand system for a tech startup.</div>
-        </div>
-        <div class="bento-arrow">↗</div>
-      </div>
+      <div class="bento-card"><div class="bento-placeholder">🏥</div><div class="bento-overlay"><div class="bento-cat">Healthcare · Web</div><div class="bento-title">Dr. Sharma Clinic — Landing Page</div><div class="bento-desc">A modern, trust-building single-page site for a general physician clinic with appointment booking.</div></div><div class="bento-arrow">↗</div></div>
+      <div class="bento-card"><div class="bento-placeholder">💪</div><div class="bento-overlay"><div class="bento-cat">Fitness · Web</div><div class="bento-title">IronEdge Gym — Brand & Site</div><div class="bento-desc">Bold branding + high-energy landing page for a local gym startup.</div></div><div class="bento-arrow">↗</div></div>
+      <div class="bento-card"><div class="bento-placeholder">☕</div><div class="bento-overlay"><div class="bento-cat">F&B · Web</div><div class="bento-title">Brew & Co Cafe</div><div class="bento-desc">Minimal, aesthetic site with menu integration.</div></div><div class="bento-arrow">↗</div></div>
+      <div class="bento-card"><div class="bento-placeholder">📱</div><div class="bento-overlay"><div class="bento-cat">Mobile · Flutter</div><div class="bento-title">TaskFlow App</div><div class="bento-desc">Productivity Flutter app with clean UI.</div></div><div class="bento-arrow">↗</div></div>
+      <div class="bento-card"><div class="bento-placeholder">🎨</div><div class="bento-overlay"><div class="bento-cat">Design · Branding</div><div class="bento-title">Brand Identity Kit</div><div class="bento-desc">Complete brand system for a tech startup.</div></div><div class="bento-arrow">↗</div></div>
     </div>
     <div style="text-align:center; margin-top:48px;" class="reveal reveal-delay-2">
-      <a href="#contact" class="btn-primary" style="display:inline-flex">
-        Have a project in mind?
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-      </a>
+      <a href="#contact" class="btn-primary" style="display:inline-flex">Have a project in mind? <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
     </div>
   </div>
 </section>
@@ -948,55 +781,27 @@
     <div class="reveal reveal-delay-2"><p class="section-sub">We're a tight-knit team of designers, developers, and builders — working together out of passion for great digital products.</p></div>
     <div class="team-grid">
       <div class="team-card reveal reveal-delay-2">
-        <div class="team-avatar-wrap">
-          <div class="team-avatar">T</div>
-        </div>
+        <div class="team-avatar-wrap"><div class="team-avatar">T</div></div>
         <div class="team-info">
           <div class="team-name">Tanmay</div>
-          <div class="team-role">Co-Founder · Backend Developer</div>
           <div class="team-bio">The engine room of OneTag. Tanmay is a Java Full-Stack and Software Development expert who architects backends that scale. When something needs to work reliably — Tanmay builds it.</div>
-          <div class="team-skills">
-            <span class="team-skill">Java</span>
-            <span class="team-skill">Full Stack</span>
-            <span class="team-skill">Spring Boot</span>
-            <span class="team-skill">Databases</span>
-            <span class="team-skill">System Design</span>
-          </div>
+          <div class="team-skills"><span class="team-skill">Java</span><span class="team-skill">Full Stack</span><span class="team-skill">Spring Boot</span><span class="team-skill">Databases</span><span class="team-skill">System Design</span></div>
         </div>
       </div>
       <div class="team-card reveal reveal-delay-1">
-        <div class="team-avatar-wrap">
-          <div class="team-avatar">A</div>
-        </div>
+        <div class="team-avatar-wrap"><div class="team-avatar">A</div></div>
         <div class="team-info">
           <div class="team-name">Aman</div>
-          <div class="team-role">Co-Founder · Web & Graphic Designer</div>
           <div class="team-bio">The visual brain behind OneTag. Aman crafts interfaces that don't just look good — they convert. With expertise in web design and graphic design, he's the reason clients fall in love at first sight.</div>
-          <div class="team-skills">
-            <span class="team-skill">Web Design</span>
-            <span class="team-skill">Graphic Design</span>
-            <span class="team-skill">UI/UX</span>
-            <span class="team-skill">Figma</span>
-            <span class="team-skill">MERN</span>
-          </div>
+          <div class="team-skills"><span class="team-skill">Web Design</span><span class="team-skill">Graphic Design</span><span class="team-skill">UI/UX</span><span class="team-skill">Figma</span><span class="team-skill">MERN</span></div>
         </div>
       </div>
-      
       <div class="team-card reveal reveal-delay-3">
-        <div class="team-avatar-wrap">
-          <div class="team-avatar">G</div>
-        </div>
+        <div class="team-avatar-wrap"><div class="team-avatar">G</div></div>
         <div class="team-info">
           <div class="team-name">Gajendra</div>
-          <div class="team-role">Co-Founder · .NET & Mobile Developer</div>
           <div class="team-bio">The multi-platform powerhouse. Gajendra covers .NET development alongside Flutter and Android, making sure OneTag can deliver across every platform a client could ever need.</div>
-          <div class="team-skills">
-            <span class="team-skill">.NET</span>
-            <span class="team-skill">Flutter</span>
-            <span class="team-skill">Android</span>
-            <span class="team-skill">C#</span>
-            <span class="team-skill">Dart</span>
-          </div>
+          <div class="team-skills"><span class="team-skill">.NET</span><span class="team-skill">Flutter</span><span class="team-skill">Android</span><span class="team-skill">C#</span><span class="team-skill">Dart</span></div>
         </div>
       </div>
     </div>
@@ -1010,42 +815,9 @@
     <div class="reveal reveal-delay-1"><h2 class="section-title" style="color:var(--white)">What Our Clients Say</h2></div>
     <div class="reveal reveal-delay-2"><p class="section-sub" style="color:rgba(248,248,248,0.45);margin-bottom:48px">Real feedback from real people we've worked with.</p></div>
     <div class="testi-grid">
-      <div class="testi-card reveal reveal-delay-1">
-        <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-        <div class="testi-quote">"</div>
-        <div class="testi-text">Aman and the team delivered a website for my clinic that I couldn't have imagined. Patients actually compliment it. Professional, fast, and incredibly responsive to feedback.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">DS</div>
-          <div>
-            <div class="testi-author-name">Dr. Sanjay Patil</div>
-            <div class="testi-author-role">General Physician, Nagpur</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card reveal reveal-delay-2">
-        <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-        <div class="testi-quote">"</div>
-        <div class="testi-text">We needed an app and a website — they handled both without missing a beat. Gajendra's Flutter work is seriously impressive. Our members love the app.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">RK</div>
-          <div>
-            <div class="testi-author-name">Rahul Khandelwal</div>
-            <div class="testi-author-role">Owner, IronEdge Gym</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card reveal reveal-delay-3">
-        <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-        <div class="testi-quote">"</div>
-        <div class="testi-text">OneTag turned our cafe's online presence from zero to stunning. The site gets us new customers every week. Best investment we've made for the business.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">PM</div>
-          <div>
-            <div class="testi-author-name">Priya Mehta</div>
-            <div class="testi-author-role">Founder, Brew & Co Cafe</div>
-          </div>
-        </div>
-      </div>
+      <div class="testi-card reveal reveal-delay-1"><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="testi-quote">"</div><div class="testi-text">Aman and the team delivered a website for my clinic that I couldn't have imagined. Patients actually compliment it. Professional, fast, and incredibly responsive to feedback.</div><div class="testi-author"><div class="testi-avatar">DS</div><div><div class="testi-author-name">Dr. Sanjay Patil</div><div class="testi-author-role">General Physician, Nagpur</div></div></div></div>
+      <div class="testi-card reveal reveal-delay-2"><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="testi-quote">"</div><div class="testi-text">We needed an app and a website — they handled both without missing a beat. Gajendra's Flutter work is seriously impressive. Our members love the app.</div><div class="testi-author"><div class="testi-avatar">RK</div><div><div class="testi-author-name">Rahul Khandelwal</div><div class="testi-author-role">Owner, IronEdge Gym</div></div></div></div>
+      <div class="testi-card reveal reveal-delay-3"><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="testi-quote">"</div><div class="testi-text">OneTag turned our cafe's online presence from zero to stunning. The site gets us new customers every week. Best investment we've made for the business.</div><div class="testi-author"><div class="testi-avatar">PM</div><div><div class="testi-author-name">Priya Mehta</div><div class="testi-author-role">Founder, Brew & Co Cafe</div></div></div></div>
     </div>
   </div>
 </section>
@@ -1057,39 +829,9 @@
     <div class="reveal reveal-delay-1"><h2 class="section-title" style="color:var(--black)">Updates &<br>Upcoming Projects</h2></div>
     <div class="reveal reveal-delay-2"><p class="section-sub">Stay tuned — we're always building something new.</p></div>
     <div class="updates-grid">
-      <div class="update-card reveal reveal-delay-1">
-        <div class="update-top">
-          🚀
-          <span class="update-status status-inprogress">In Progress</span>
-        </div>
-        <div class="update-body">
-          <div class="update-date">March 2025</div>
-          <div class="update-title">OneTag Client Portal</div>
-          <div class="update-desc">A dedicated dashboard where clients can track their project progress, share feedback, and access deliverables — all in one place.</div>
-        </div>
-      </div>
-      <div class="update-card reveal reveal-delay-2">
-        <div class="update-top">
-          🏥
-          <span class="update-status status-upcoming">Upcoming</span>
-        </div>
-        <div class="update-body">
-          <div class="update-date">Q2 2025</div>
-          <div class="update-title">Healthcare Site Template Pack</div>
-          <div class="update-desc">A ready-to-launch collection of templates specifically built for doctors, clinics, and diagnostic centers across India.</div>
-        </div>
-      </div>
-      <div class="update-card reveal reveal-delay-3">
-        <div class="update-top">
-          📦
-          <span class="update-status status-planned">Planned</span>
-        </div>
-        <div class="update-body">
-          <div class="update-date">Q3 2025</div>
-          <div class="update-title">OneTag SaaS Starter Kit</div>
-          <div class="update-desc">A full-stack boilerplate with auth, payments, and dashboard — so clients can launch their own SaaS products faster with our help.</div>
-        </div>
-      </div>
+      <div class="update-card reveal reveal-delay-1"><div class="update-top">🚀<span class="update-status status-inprogress">In Progress</span></div><div class="update-body"><div class="update-date">March 2025</div><div class="update-title">OneTag Client Portal</div><div class="update-desc">A dedicated dashboard where clients can track their project progress, share feedback, and access deliverables — all in one place.</div></div></div>
+      <div class="update-card reveal reveal-delay-2"><div class="update-top">🏥<span class="update-status status-upcoming">Upcoming</span></div><div class="update-body"><div class="update-date">Q2 2025</div><div class="update-title">Healthcare Site Template Pack</div><div class="update-desc">A ready-to-launch collection of templates specifically built for doctors, clinics, and diagnostic centers across India.</div></div></div>
+      <div class="update-card reveal reveal-delay-3"><div class="update-top">📦<span class="update-status status-planned">Planned</span></div><div class="update-body"><div class="update-date">Q3 2025</div><div class="update-title">OneTag SaaS Starter Kit</div><div class="update-desc">A full-stack boilerplate with auth, payments, and dashboard — so clients can launch their own SaaS products faster with our help.</div></div></div>
     </div>
   </div>
 </section>
@@ -1104,31 +846,14 @@
         <p class="about-text reveal reveal-delay-2">OneTag was born from a simple idea: that small businesses and startups deserve world-class digital products, not just templates. We're three friends from Nagpur who decided to stop waiting and start building.</p>
         <p class="about-text reveal reveal-delay-2" style="margin-top:-20px">We work from home, move fast, and care deeply about every pixel and every line of code we ship. No fluff — just quality work and honest communication.</p>
         <div class="about-pills reveal reveal-delay-3">
-          <span class="about-pill">Nagpur, India</span>
-          <span class="about-pill">Remote-First</span>
-          <span class="about-pill">Startup Focused</span>
-          <span class="about-pill">MERN Stack</span>
-          <span class="about-pill">Flutter</span>
-          <span class="about-pill">Java · .NET</span>
+          <span class="about-pill">Nagpur, India</span><span class="about-pill">Remote-First</span><span class="about-pill">Startup Focused</span><span class="about-pill">MERN Stack</span><span class="about-pill">Flutter</span><span class="about-pill">Java · .NET</span>
         </div>
       </div>
       <div class="about-right reveal reveal-delay-2">
-        <div class="about-stat-card">
-          <div class="about-stat-num">3 <span>Co-Founders</span></div>
-          <div class="about-stat-label">Design · Backend · Mobile — fully covered in-house</div>
-        </div>
-        <div class="about-stat-card">
-          <div class="about-stat-num">8<span>+</span></div>
-          <div class="about-stat-label">Services Offered</div>
-        </div>
-        <div class="about-stat-card">
-          <div class="about-stat-num">100<span>%</span></div>
-          <div class="about-stat-label">Remote & Flexible</div>
-        </div>
-        <div class="about-stat-card">
-          <div class="about-stat-num">∞</div>
-          <div class="about-stat-label">Passion for Building</div>
-        </div>
+        <div class="about-stat-card"><div class="about-stat-num">3 <span>Co-Founders</span></div><div class="about-stat-label">Design · Backend · Mobile — fully covered in-house</div></div>
+        <div class="about-stat-card"><div class="about-stat-num">8<span>+</span></div><div class="about-stat-label">Services Offered</div></div>
+        <div class="about-stat-card"><div class="about-stat-num">100<span>%</span></div><div class="about-stat-label">Remote & Flexible</div></div>
+        <div class="about-stat-card"><div class="about-stat-num">∞</div><div class="about-stat-label">Passion for Building</div></div>
       </div>
     </div>
   </div>
@@ -1143,95 +868,82 @@
         <h2 class="section-title reveal reveal-delay-1" style="color:var(--white)">Let's Build<br>Something Great</h2>
         <p class="section-sub reveal reveal-delay-2" style="color:rgba(248,248,248,0.45)">Have a project in mind? We'd love to hear about it. Reach out through any of these channels.</p>
         <div class="contact-links reveal reveal-delay-3">
-          <a href="mailto:hello@onetag.in" class="contact-link">
-            <div class="contact-link-icon">📧</div>
-            <div class="contact-link-info">
-              <div class="contact-link-label">Email Us</div>
-              <div class="contact-link-val">hello@onetag.in</div>
+
+          <!-- Gmail -->
+          <a href="mailto:onetagit@gmail.com" class="contact-link">
+            <div class="contact-link-icon">
+              <svg viewBox="0 0 122.88 92.12" xmlns="http://www.w3.org/2000/svg"><style>.s0{fill:#EA4335}.s1{fill:#C5221F}.s2{fill:#FBBC04}.s3{fill:#34A853}.s4{fill:#4285F4}</style><g><path class="s4" d="M8.36,92.12h19.54V44.67L0,23.76v60.08C0,88.42,3.78,92.12,8.36,92.12z"/><path class="s3" d="M94.97,92.12h19.54c4.67,0,8.36-3.78,8.36-8.36v-60L94.97,44.67V92.12z"/><path class="s2" d="M94.97,8.4v36.27l27.91-20.91V12.58c0-10.37-11.82-16.25-20.11-10.05L94.97,8.4z"/><polygon class="s0" points="27.9,44.67 27.9,8.4 61.44,33.57 94.97,8.4 94.97,44.67 61.44,69.76"/><path class="s1" d="M0,12.58v11.18l27.91,20.91V8.4l-7.8-5.87C11.82-3.66,0,2.29,0,12.58z"/></g></svg>
             </div>
+            <div class="contact-link-info"><div class="contact-link-label">Email Us</div><div class="contact-link-val">onetagit@gmail.com</div></div>
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="https://wa.me/91XXXXXXXXXX" class="contact-link">
-            <div class="contact-link-icon">💬</div>
-            <div class="contact-link-info">
-              <div class="contact-link-label">WhatsApp</div>
-              <div class="contact-link-val">+91 XXXXX XXXXX</div>
+
+          <!-- WhatsApp -->
+          <a href="https://wa.me/919579451647" class="contact-link">
+            <div class="contact-link-icon">
+              <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="wag" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#61fd7d"/><stop offset="1" stop-color="#2bb826"/></linearGradient></defs><path fill="url(#wag)" d="M512,382.07c0,2.8-.09,8.88-.26,13.58-.41,11.49-1.32,26.32-2.7,33.07a109.76,109.76,0,0,1-9.27,27.71,98.45,98.45,0,0,1-43.43,43.39,110.21,110.21,0,0,1-27.87,9.28c-6.69,1.35-21.41,2.24-32.82,2.65-4.71.17-10.79.25-13.58.25l-252.1,0c-2.8,0-8.88-.09-13.58-.26-11.49-.41-26.32-1.32-33.07-2.69a110.37,110.37,0,0,1-27.72-9.28A98.5,98.5,0,0,1,12.18,456.3,110.21,110.21,0,0,1,2.9,428.43C1.55,421.74.66,407,.25,395.61.08,390.91,0,384.82,0,382l0-252.1c0-2.8.09-8.88.25-13.58C.71,104.86,1.62,90,3,83.28a110.37,110.37,0,0,1,9.27-27.72A98.59,98.59,0,0,1,55.7,12.18,110.21,110.21,0,0,1,83.57,2.9C90.26,1.55,105,.66,116.39.25,121.09.08,127.18,0,130,0l252.1,0c2.8,0,8.88.09,13.58.25C407.14.71,422,1.62,428.72,3a110.37,110.37,0,0,1,27.72,9.27A98.59,98.59,0,0,1,499.82,55.7a110.21,110.21,0,0,1,9.28,27.87c1.35,6.69,2.24,21.41,2.65,32.82.17,4.7.25,10.79.25,13.58z"/><path fill="#fff" d="M379.56,131.67A172.4,172.4,0,0,0,256.67,80.73C161,80.73,83.05,158.64,83.05,254.42a173.47,173.47,0,0,0,23.2,86.82l-24.65,90,92.08-24.17a173.55,173.55,0,0,0,83,21.17h.07c95.73,0,173.69-77.91,173.69-173.69A172.73,172.73,0,0,0,379.53,131.7zm-122.84,267.29a144.17,144.17,0,0,1-73.52-20.14l-5.29-3.15L123.27,390l14.59-53.27-3.42-5.47a143.29,143.29,0,0,1-22.11-76.81C112.33,174.81,177.1,110,256.8,110A144.34,144.34,0,0,1,401.12,254.48c-.07,79.67-64.83,144.46-144.41,144.46zm79.15-108.16c-4.32-2.2-25.68-12.67-29.65-14.12s-6.85-2.19-9.8,2.2-11.22,14.11-13.76,17-5.06,3.29-9.37,1.09-18.35-6.77-34.92-21.56c-12.88-11.5-21.61-25.74-24.15-30s-.29-6.71,1.92-8.83c2-1.93,4.32-5.06,6.51-7.6s2.88-4.32,4.32-7.26.74-5.42-.35-7.6-9.8-23.55-13.34-32.25c-3.49-8.51-7.12-7.32-9.79-7.47s-5.42-.13-8.29-.13a16,16,0,0,0-11.57,5.41c-4,4.32-15.2,14.86-15.2,36.22s15.54,42,17.72,44.91,30.61,46.76,74.14,65.54c10.34,4.44,18.42,7.11,24.72,9.18a60,60,0,0,0,27.32,1.71c8.35-1.23,25.68-10.49,29.31-20.62s3.63-18.83,2.55-20.62-3.91-3-8.29-5.22z"/></svg>
             </div>
+            <div class="contact-link-info"><div class="contact-link-label">WhatsApp</div><div class="contact-link-val">+91 9579451647</div></div>
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="tel:+91XXXXXXXXXX" class="contact-link">
-            <div class="contact-link-icon">📱</div>
-            <div class="contact-link-info">
-              <div class="contact-link-label">Phone</div>
-              <div class="contact-link-val">+91 9579451647</div>
+
+          <!-- Phone -->
+          <a href="tel:+919579451647" class="contact-link">
+            <div class="contact-link-icon">
+              <svg viewBox="0 0 122.88 122.88" xmlns="http://www.w3.org/2000/svg"><path fill="#FF6B2B" fill-rule="evenodd" d="M21.87,0H101a21.93,21.93,0,0,1,21.87,21.87V101A21.93,21.93,0,0,1,101,122.88H21.87A21.93,21.93,0,0,1,0,101V21.87A21.93,21.93,0,0,1,21.87,0Z"/><path fill="#fff" fill-rule="evenodd" d="M43.93,55.89C48.86,64.78,55.31,73,67.24,79.09c1.79.92,3.42,0,4.82-1.45,2.08-2.06,5-7.9,8.49-6.27l13,7.5c2.66,1.8,1.87,6,0,9.24-2.57,4.54-7.77,6-12.68,6.76C73.38,96,66.66,93.46,58.54,88.42c-2-1.21-4.09-2.51-6.19-4.09-13.31-10-27-28.2-24.46-44.3C29,32.87,33.73,27,43,27.83L51.32,42c1.7,2.12.45,4.09-2.14,6s-6.85,4.16-5.25,7.93z"/></svg>
             </div>
+            <div class="contact-link-info"><div class="contact-link-label">Phone</div><div class="contact-link-val">+91 9579451647</div></div>
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
+
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/one-tag-5290273b8" target="_blank" class="contact-link">
+            <div class="contact-link-icon">
+              <svg viewBox="0 0 122.88 122.31" xmlns="http://www.w3.org/2000/svg"><path fill="#0a66c2" fill-rule="evenodd" d="M27.75,0H95.13a27.83,27.83,0,0,1,27.75,27.75V94.57a27.83,27.83,0,0,1-27.75,27.74H27.75A27.83,27.83,0,0,1,0,94.57V27.75A27.83,27.83,0,0,1,27.75,0Z"/><path fill="#fff" fill-rule="evenodd" d="M49.19,47.41H64.72v8h.22c2.17-3.88,7.45-8,15.34-8,16.39,0,19.42,10.2,19.42,23.47V98.94H83.51V74c0-5.71-.12-13.06-8.42-13.06s-9.72,6.21-9.72,12.65v25.4H49.19V47.41ZM40,31.79a8.42,8.42,0,1,1-8.42-8.42A8.43,8.43,0,0,1,40,31.79ZM23.18,47.41H40V98.94H23.18V47.41Z"/></svg>
+            </div>
+            <div class="contact-link-info"><div class="contact-link-label">LinkedIn</div><div class="contact-link-val">linkedin.com/in/one-tag</div></div>
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+
+          <!-- Instagram -->
           <a href="https://instagram.com/onetagit" target="_blank" class="contact-link">
-            <div class="contact-link-icon">📸</div>
-            <div class="contact-link-info">
-              <div class="contact-link-label">Instagram</div>
-              <div class="contact-link-val">@onetagit</div>
+            <div class="contact-link-icon">
+              <svg viewBox="0 0 132.004 132" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><linearGradient id="igb"><stop offset="0" stop-color="#3771c8"/><stop stop-color="#3771c8" offset=".128"/><stop offset="1" stop-color="#60f" stop-opacity="0"/></linearGradient><linearGradient id="iga"><stop offset="0" stop-color="#fd5"/><stop offset=".1" stop-color="#fd5"/><stop offset=".5" stop-color="#ff543e"/><stop offset="1" stop-color="#c837ab"/></linearGradient><radialGradient id="igc" cx="158.429" cy="578.088" r="65" xlink:href="#iga" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0 -1.98198 1.8439 0 -1031.402 454.004)" fx="158.429" fy="578.088"/><radialGradient id="igd" cx="147.694" cy="473.455" r="65" xlink:href="#igb" gradientUnits="userSpaceOnUse" gradientTransform="matrix(.17394 .86872 -3.5818 .71718 1648.348 -458.493)" fx="147.694" fy="473.455"/></defs><path fill="url(#igc)" d="M65.03 0C37.888 0 29.95.028 28.407.156c-5.57.463-9.036 1.34-12.812 3.22-2.91 1.445-5.205 3.12-7.47 5.468C4 13.126 1.5 18.394.595 24.656c-.44 3.04-.568 3.66-.594 19.188-.01 5.176 0 11.988 0 21.125 0 27.12.03 35.05.16 36.59.45 5.42 1.3 8.83 3.1 12.56 3.44 7.14 10.01 12.5 17.75 14.5 2.68.69 5.64 1.07 9.44 1.25 1.61.07 18.02.12 34.44.12 16.42 0 32.84-.02 34.41-.1 4.4-.207 6.955-.55 9.78-1.28 7.79-2.01 14.24-7.29 17.75-14.53 1.765-3.64 2.66-7.18 3.065-12.317.088-1.12.125-18.977.125-36.81 0-17.836-.04-35.66-.128-36.78-.41-5.22-1.305-8.73-3.127-12.44-1.495-3.037-3.155-5.305-5.565-7.624C116.9 4 111.64 1.5 105.372.596 102.335.157 101.73.027 86.19 0H65.03z" transform="translate(1.004 1)"/><path fill="url(#igd)" d="M65.03 0C37.888 0 29.95.028 28.407.156c-5.57.463-9.036 1.34-12.812 3.22-2.91 1.445-5.205 3.12-7.47 5.468C4 13.126 1.5 18.394.595 24.656c-.44 3.04-.568 3.66-.594 19.188-.01 5.176 0 11.988 0 21.125 0 27.12.03 35.05.16 36.59.45 5.42 1.3 8.83 3.1 12.56 3.44 7.14 10.01 12.5 17.75 14.5 2.68.69 5.64 1.07 9.44 1.25 1.61.07 18.02.12 34.44.12 16.42 0 32.84-.02 34.41-.1 4.4-.207 6.955-.55 9.78-1.28 7.79-2.01 14.24-7.29 17.75-14.53 1.765-3.64 2.66-7.18 3.065-12.317.088-1.12.125-18.977.125-36.81 0-17.836-.04-35.66-.128-36.78-.41-5.22-1.305-8.73-3.127-12.44-1.495-3.037-3.155-5.305-5.565-7.624C116.9 4 111.64 1.5 105.372.596 102.335.157 101.73.027 86.19 0H65.03z" transform="translate(1.004 1)"/><path fill="#fff" d="M66.004 18c-13.036 0-14.672.057-19.792.29-5.11.234-8.598 1.043-11.65 2.23-3.157 1.226-5.835 2.866-8.503 5.535-2.67 2.668-4.31 5.346-5.54 8.502-1.19 3.053-2 6.542-2.23 11.65C18.06 51.327 18 52.964 18 66s.058 14.667.29 19.787c.235 5.11 1.044 8.598 2.23 11.65 1.227 3.157 2.867 5.835 5.536 8.503 2.667 2.67 5.345 4.314 8.5 5.54 3.054 1.187 6.543 1.996 11.652 2.23 5.12.233 6.755.29 19.79.29 13.037 0 14.668-.057 19.788-.29 5.11-.234 8.602-1.043 11.656-2.23 3.156-1.226 5.83-2.87 8.497-5.54 2.67-2.668 4.31-5.346 5.54-8.502 1.18-3.053 1.99-6.542 2.23-11.65.23-5.12.29-6.752.29-19.788 0-13.036-.06-14.672-.29-19.792-.24-5.11-1.05-8.598-2.23-11.65-1.23-3.157-2.87-5.835-5.54-8.503-2.67-2.67-5.34-4.31-8.5-5.535-3.06-1.187-6.55-1.996-11.66-2.23-5.12-.233-6.75-.29-19.79-.29zm-4.306 8.65c1.278-.002 2.704 0 4.306 0 12.816 0 14.335.046 19.396.276 4.68.214 7.22.996 8.912 1.653 2.24.87 3.837 1.91 5.516 3.59 1.68 1.68 2.72 3.28 3.592 5.52.657 1.69 1.44 4.23 1.653 8.91.23 5.06.28 6.58.28 19.39s-.05 14.33-.28 19.39c-.214 4.68-.996 7.22-1.653 8.91-.87 2.24-1.912 3.835-3.592 5.514-1.68 1.68-3.275 2.72-5.516 3.59-1.69.66-4.232 1.44-8.912 1.654-5.06.23-6.58.28-19.396.28-12.817 0-14.336-.05-19.396-.28-4.68-.216-7.22-.998-8.913-1.655-2.24-.87-3.84-1.91-5.52-3.59-1.68-1.68-2.72-3.276-3.592-5.517-.657-1.69-1.44-4.23-1.653-8.91-.23-5.06-.276-6.58-.276-19.398s.046-14.33.276-19.39c.214-4.68.996-7.22 1.653-8.912.87-2.24 1.912-3.84 3.592-5.52 1.68-1.68 3.28-2.72 5.52-3.592 1.692-.66 4.233-1.44 8.913-1.655 4.428-.2 6.144-.26 15.09-.27zm29.928 7.97c-3.18 0-5.76 2.577-5.76 5.758 0 3.18 2.58 5.76 5.76 5.76 3.18 0 5.76-2.58 5.76-5.76 0-3.18-2.58-5.76-5.76-5.76zm-25.622 6.73c-13.613 0-24.65 11.037-24.65 24.65 0 13.613 11.037 24.645 24.65 24.645C79.617 90.645 90.65 79.613 90.65 66S79.616 41.35 66.003 41.35zm0 8.65c8.836 0 16 7.163 16 16 0 8.836-7.164 16-16 16-8.837 0-16-7.164-16-16 0-8.837 7.163-16 16-16z"/></svg>
             </div>
+            <div class="contact-link-info"><div class="contact-link-label">Instagram</div><div class="contact-link-val">@onetagit</div></div>
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="https://github.com/onetag" class="contact-link">
-            <div class="contact-link-icon">🐙</div>
-            <div class="contact-link-info">
-              <div class="contact-link-label">GitHub</div>
-              <div class="contact-link-val">github.com/onetag</div>
+
+          <!-- GitHub -->
+          <a href="https://github.com/onetag-it" target="_blank" class="contact-link">
+            <div class="contact-link-icon">
+              <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><path d="M319.988 7.973C143.293 7.973 0 151.242 0 327.96c0 141.392 91.678 261.298 218.826 303.63 16.004 2.964 21.886-6.957 21.886-15.414 0-7.63-.319-32.835-.449-59.552-89.032 19.359-107.8-37.772-107.8-37.772-14.552-36.993-35.529-46.831-35.529-46.831-29.032-19.879 2.209-19.442 2.209-19.442 32.126 2.245 49.04 32.954 49.04 32.954 28.56 48.922 74.883 34.76 93.131 26.598 2.882-20.681 11.15-34.807 20.315-42.803-71.08-8.067-145.797-35.516-145.797-158.14 0-34.926 12.52-63.485 32.965-85.88-3.33-8.078-14.291-40.606 3.083-84.674 0 0 26.87-8.61 88.029 32.8 25.512-7.075 52.878-10.642 80.056-10.76 27.2.118 54.614 3.673 80.162 10.76 61.076-41.386 87.922-32.8 87.922-32.8 17.398 44.08 6.485 76.631 3.154 84.675 20.516 22.394 32.93 50.953 32.93 85.879 0 122.907-74.883 149.93-146.117 157.856 11.481 9.921 21.733 29.398 21.733 59.233 0 42.792-.366 77.28-.366 87.804 0 8.516 5.764 18.473 21.992 15.354 127.076-42.354 218.637-162.274 218.637-303.582 0-176.695-143.269-319.988-320-319.988z"/></svg>
             </div>
+            <div class="contact-link-info"><div class="contact-link-label">GitHub</div><div class="contact-link-val">github.com/onetag-it</div></div>
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
+
+          <!-- Facebook -->
           <a href="https://www.facebook.com/share/1Fv4Z23oyK/" target="_blank" class="contact-link">
-            <div class="contact-link-icon">🔵</div>
-            <div class="contact-link-info">
-              <div class="contact-link-label">Facebook</div>
-              <div class="contact-link-val">facebook.com/onetag</div>
+            <div class="contact-link-icon">
+              <svg viewBox="0 0 512 509.64" xmlns="http://www.w3.org/2000/svg"><rect fill="#0866FF" width="512" height="509.64" rx="115.612" ry="115.612"/><path fill="#fff" d="M287.015 509.64h-92.858V332.805h-52.79v-78.229h52.79v-33.709c0-87.134 39.432-127.522 124.977-127.522 16.217 0 44.203 3.181 55.651 6.361v70.915c-6.043-.636-16.536-.953-29.576-.953-41.976 0-58.194 15.9-58.194 57.241v27.667h83.618l-14.365 78.229h-69.253V509.64z"/></svg>
             </div>
+            <div class="contact-link-info"><div class="contact-link-label">Facebook</div><div class="contact-link-val">facebook.com/onetag</div></div>
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
+
         </div>
       </div>
+
       <div class="contact-form reveal reveal-delay-2">
         <div class="form-title">Send us a Message</div>
         <div class="form-row">
-          <div class="form-group">
-            <label>Your Name</label>
-            <input type="text" placeholder="John Doe"/>
-          </div>
-          <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" placeholder="john@example.com"/>
-          </div>
+          <div class="form-group"><label>Your Name</label><input type="text" placeholder="John Doe"/></div>
+          <div class="form-group"><label>Email Address</label><input type="email" placeholder="john@example.com"/></div>
         </div>
-        <div class="form-group">
-          <label>Service You Need</label>
-          <select>
-            <option value="">Select a service...</option>
-            <option>Web Design & Development</option>
-            <option>Mobile App Development</option>
-            <option>UI/UX Design</option>
-            <option>Graphic Design</option>
-            <option>Backend / API Development</option>
-            <option>Single Page Portfolio Site</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Budget Range</label>
-          <select>
-            <option value="">Select budget...</option>
-            <option>₹5,000 – ₹15,000</option>
-            <option>₹15,000 – ₹50,000</option>
-            <option>₹50,000 – ₹1,00,000</option>
-            <option>₹1,00,000+</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Tell Us About Your Project</label>
-          <textarea placeholder="Describe your project, goals, timeline..."></textarea>
-        </div>
+        <div class="form-group"><label>Service You Need</label><select><option value="">Select a service...</option><option>Web Design & Development</option><option>Mobile App Development</option><option>UI/UX Design</option><option>Graphic Design</option><option>Backend / API Development</option><option>Single Page Portfolio Site</option><option>Other</option></select></div>
+        <div class="form-group"><label>Budget Range</label><select><option value="">Select budget...</option><option>₹5,000 – ₹15,000</option><option>₹15,000 – ₹50,000</option><option>₹50,000 – ₹1,00,000</option><option>₹1,00,000+</option></select></div>
+        <div class="form-group"><label>Tell Us About Your Project</label><textarea placeholder="Describe your project, goals, timeline..."></textarea></div>
         <button class="form-submit">Send Message →</button>
       </div>
     </div>
@@ -1243,18 +955,14 @@
   <div class="footer-inner">
     <div class="footer-logo">One<span>Tag</span></div>
     <div class="footer-links">
-      <a href="#services">Services</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#team">Team</a>
-      <a href="#about">About</a>
-      <a href="#updates">Updates</a>
-      <a href="#contact">Contact</a>
+      <a href="#services">Services</a><a href="#portfolio">Portfolio</a><a href="#team">Team</a>
+      <a href="#about">About</a><a href="#updates">Updates</a><a href="#contact">Contact</a>
     </div>
     <div class="footer-socials">
-      <a href="#" class="social-icon" title="LinkedIn">in</a>
-      <a href="#" class="social-icon" title="Instagram">ig</a>
-      <a href="#" class="social-icon" title="GitHub">gh</a>
-      <a href="#" class="social-icon" title="Facebook">fb</a>
+      <a href="https://www.linkedin.com/in/one-tag-5290273b8" class="social-icon" title="LinkedIn">in</a>
+      <a href="https://instagram.com/onetagit" class="social-icon" title="Instagram">ig</a>
+      <a href="https://github.com/onetag-it" class="social-icon" title="GitHub">gh</a>
+      <a href="https://www.facebook.com/share/1Fv4Z23oyK/" class="social-icon" title="Facebook">fb</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -1294,7 +1002,7 @@
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
   reveals.forEach(el => observer.observe(el));
 
@@ -1310,22 +1018,8 @@
   document.querySelector('.form-submit').addEventListener('click', function() {
     this.textContent = '✓ Message Sent!';
     this.style.background = '#22c55e';
-    setTimeout(() => {
-      this.textContent = 'Send Message →';
-      this.style.background = '';
-    }, 3000);
+    setTimeout(() => { this.textContent = 'Send Message →'; this.style.background = ''; }, 3000);
   });
-
-  // Counter animation for hero stats
-  function animateCounter(el, target, suffix) {
-    let current = 0;
-    const step = target / 40;
-    const timer = setInterval(() => {
-      current = Math.min(current + step, target);
-      el.innerHTML = Math.floor(current) + '<span>' + suffix + '</span>';
-      if (current >= target) clearInterval(timer);
-    }, 40);
-  }
 </script>
 </body>
 </html>
